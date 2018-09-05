@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
-    private Rigidbody2D rb2d;
+    //private Rigidbody2D rb2d;
     private Animator animate;
 
     protected Joystick joystick;
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
 //        joystick = FindObjectOfType<Joystick>();
 //        joybutton = FindObjectOfType<Joybutton>();
@@ -51,8 +51,9 @@ public class PlayerController : MonoBehaviour {
 
             transform.Translate(new Vector3(moveHorizontal, moveVertical));
 
-            animate.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
-            animate.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+
+        animate.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+        animate.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
     }
 }
 

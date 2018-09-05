@@ -538,7 +538,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1348048552}
   speed: 3
+  speed2: 0
   rb: {fileID: 0}
+  isMoving: 0
+  playerMoving: 0
 --- !u!212 &1077766247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -667,7 +670,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077766245}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b770f9a41c0162e48a514564fd013f1b, type: 3}
   m_Name: 
@@ -808,7 +811,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1129627408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b770f9a41c0162e48a514564fd013f1b, type: 3}
   m_Name: 
@@ -894,7 +897,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1348048552}
   speed: 3
+  speed2: 0
   rb: {fileID: 0}
+  isMoving: 0
+  playerMoving: 0
 --- !u!212 &1129627414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -972,7 +978,7 @@ GameObject:
   - component: {fileID: 1311594810}
   m_Layer: 1
   m_Name: Foliage
-  m_TagString: Untagged
+  m_TagString: Collision_Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11587,7 +11593,7 @@ GameObject:
   - component: {fileID: 1696652447}
   m_Layer: 0
   m_Name: building-inn
-  m_TagString: Untagged
+  m_TagString: Collision_Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11688,7 +11694,7 @@ GameObject:
   - component: {fileID: 2004130687}
   m_Layer: 0
   m_Name: building-thin
-  m_TagString: Untagged
+  m_TagString: Collision_Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
