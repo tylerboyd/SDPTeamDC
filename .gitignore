@@ -15,8 +15,6 @@ sysinfo.txt
 
 ###
 # VS/MD solution and project files
-*.cs.meta
-*.meta
 ###
 [Ee]xportedObj/
 *.booproj
