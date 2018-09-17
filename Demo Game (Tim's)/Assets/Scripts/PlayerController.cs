@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
     public float speed;
-    private Rigidbody2D rb2d;
+    //private Rigidbody2D rb2d;
     private Animator animate;
-
+    
     protected Joystick joystick;
     protected Joybutton joybutton;
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();
-//        joystick = FindObjectOfType<Joystick>();
-//        joybutton = FindObjectOfType<Joybutton>();
+        //        joystick = FindObjectOfType<Joystick>();
+        //        joybutton = FindObjectOfType<Joybutton>();      
     }
 
     //Always use GetAxisRaw otherwise object will slide
@@ -51,8 +52,9 @@ public class PlayerController : MonoBehaviour {
 
             transform.Translate(new Vector3(moveHorizontal, moveVertical));
 
-            animate.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
-            animate.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+
+        animate.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
+        animate.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
     }
 }
 
