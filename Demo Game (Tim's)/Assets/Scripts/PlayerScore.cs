@@ -8,12 +8,14 @@ public class PlayerScore : MonoBehaviour {
     private int count;
     public Text countText;
 
-	void Start () {
+    void Start()
+    {
         count = 0;
         SetCountText();
+        StartCoroutine(ScoreUpdater());    
     }
 
-	void OnTriggerEnter(Collider Enemy)
+	/*void OnTriggerEnter(Collider Enemy)
     {
         if(Enemy.gameObject.CompareTag("Enemy 1"))
         {
@@ -21,6 +23,15 @@ public class PlayerScore : MonoBehaviour {
             //Enemy.gameObject.Destroy();
             count = count + 1;
             SetCountText();
+        }
+    }*/
+
+    IEnumerator ScoreUpdater()
+    {
+        for (int i = 1; i <= 100; i++)
+        {
+            AddScore();
+            yield return new WaitForSeconds(2);
         }
     }
 

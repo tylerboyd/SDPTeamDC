@@ -11,8 +11,9 @@ public class Enemy : MonoBehaviour {
     private Rigidbody2D rb;
     private GameObject target;
     private Vector2 lastMove;
-    private float health;
-    public GameObject Hero;
+
+    /*private float health;
+    private GameObject Hero;*/
 
     // Use this for initialization
     void Start ()
@@ -22,19 +23,19 @@ public class Enemy : MonoBehaviour {
         target = GameObject.FindGameObjectWithTag("Enemy");
         isMoving = false;
 
-        //Used for high score:
+        /*Used for high score:
         health = 100;
-        Hero = GameObject.FindGameObjectWithTag("Hero");
+        Hero = GameObject.FindGameObjectWithTag("Hero");*/
 
 	}
 	
-    void Update()
+    /*void Update()
     {
         if(health <= 0)
         {
             Destroy();
         }
-    }
+    }*/
 	
 	void FixedUpdate ()
     {
@@ -90,9 +91,9 @@ public class Enemy : MonoBehaviour {
         */
     }
 
-    void Destroy()
+    /*void Destroy()
     {
         Hero.SendMessage("AddScore", SendMessageOptions.DontRequireReceiver);
         Destroy();
-    }
+    }*/
 }
