@@ -2,40 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Timothy Serrano: 1394556
-
 public class PlayerMovement : MonoBehaviour {
+    Rigidbody2D rb2D;
+    Animator anim;
 
-    private float theSpeed;
+	// Use this for initialization
+	void Start () {
+        rb2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        Vector2 movement_vector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-    /*The if statements read keyboard input, which are then translated to
-     * the characters movements
-     * 
-     * Vector2 for X and Y coordinates
-    */
-    void Update () {
-
-        if(Input.GetKey(KeyCode.D))
+        if(movement_vector != Vector2.zero)
         {
-            transform.Translate(Vector2.right * theSpeed);
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("input_x", movement_vector.x);
+            anim.SetFloat("input_y", movement_vector.y);
         }
-        else if(Input.GetKey(KeyCode.A))
+        else
         {
-            transform.Translate(Vector2.left * theSpeed);
+            anim.SetBool("isWalking", false);
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector2.down * theSpeed);
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector2.up * theSpeed);
-        }
-    }
-
-    public void SetSpeed(float theSpeed)
-    {
-        this.theSpeed = theSpeed;
-    }
-   
+        rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * 10);
+	}
 }
