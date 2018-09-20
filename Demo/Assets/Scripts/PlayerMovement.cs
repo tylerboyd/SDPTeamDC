@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb2D;
     Animator anim;
+    public float speed;
 
     // Use this for initialization
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -30,6 +30,6 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isWalking", false);
         }
-        rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * 10);
+        rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * speed);
     }
 }
