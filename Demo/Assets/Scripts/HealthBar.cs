@@ -13,6 +13,7 @@ public class HealthBar : MonoBehaviour {
         healthSystem.HealthChanged += HealthSystem_HealthChanged;
     }
 
+    //Only updates the health bar when the health changes, not every frame.
     private void HealthSystem_HealthChanged(object sender, System.EventArgs e)
     {
         transform.Find("Bar").localScale = new Vector3(healthSystem.GetHealthPercentage(), 1);
