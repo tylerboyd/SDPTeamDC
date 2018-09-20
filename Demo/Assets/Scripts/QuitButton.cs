@@ -7,5 +7,6 @@ public class QuitButton : MonoBehaviour {
     private void OnMouseDown()
     {
         Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }

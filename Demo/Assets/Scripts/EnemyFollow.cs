@@ -4,6 +4,7 @@ using UnityEngine;
 
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
+//Tobias McGee: 1323946
 
 public class EnemyFollow : MonoBehaviour {
 
@@ -32,7 +33,12 @@ public class EnemyFollow : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        isMoving = true;
+        //if the player character is far enough away, start moving
+        if(Vector3.Distance(transform.position, target.position) > 3.0f)
+        {
+            isMoving = true;
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        }
 
         //left and right
         if (enemy.transform.position.x > 0.0f || enemy.transform.position.x < -0.0f)
@@ -52,6 +58,7 @@ public class EnemyFollow : MonoBehaviour {
         anim.SetBool("isMoving", playerMoving);
         anim.SetFloat("LastMoveX", lastMove.x);
         anim.SetFloat("LastMoveY", lastMove.y);
+
 
         //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
         //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
@@ -127,6 +134,13 @@ public class EnemyFollow : MonoBehaviour {
                     transform.position = Vector2.MoveTowards(transform.position, -transform.up*10, speed * Time.deltaTime);
                 }
             }
+        }
+
+        if(col.gameObject.name == "Player")
+        {
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            isMoving = false;
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
     }
 }
