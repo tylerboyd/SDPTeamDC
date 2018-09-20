@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ENEMYMOVE_1 : MonoBehaviour {
 
-    public Rigidbody2D rb2D;
     Animator anim;
     public float speed;
     private Transform target;
@@ -15,7 +14,6 @@ public class ENEMYMOVE_1 : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
