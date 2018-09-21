@@ -4,11 +4,13 @@ using UnityEngine;
 
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
+//Larry Zhou:
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb2D;
     Animator anim;
+    public float speed;
 
     //The delay between attacking time, so animation is not spammed.
     private bool attacking;
@@ -19,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsEnemies;
     public float attackRange;
     public int damage;
+
+    public AudioClip attackSound1;
+    public AudioClip attackSound2;
+    public AudioClip walkSound1;
+    public AudioClip walkSound2;
 
     // Use this for initialization
     void Start()
@@ -51,9 +58,10 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 anim.SetBool("isWalking", false);
+                SoundManager.Instance.RandomPlaySource2(walkSound1, walkSound2);
             }
 
-            rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * 10);
+            rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * speed);
 
         }
         if (attackTimeCounter <= 0)
@@ -79,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         else if(attackTimeCounter > 0)
         {
             //timeBtwAttack from blackthornprod
+            SoundManager.Instance.RandomPlaySource1(attackSound1, attackSound2);
             attackTimeCounter -= Time.deltaTime;
         }
     }
