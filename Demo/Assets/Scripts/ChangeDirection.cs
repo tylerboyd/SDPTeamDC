@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ChangeDirection : MonoBehaviour {
 
@@ -18,28 +19,28 @@ public class ChangeDirection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetAxis("Vertical") > 0)
+        if (CrossPlatformInputManager.GetAxis("Vertical") > 0)
         {
             anim.SetBool("MoveUp", true);
             anim.SetBool("MoveDown", false);
             anim.SetBool("MoveRight", false);
             anim.SetBool("MoveLeft", false);
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (CrossPlatformInputManager.GetAxis("Vertical") < 0)
         {
             anim.SetBool("MoveUp", false);
             anim.SetBool("MoveDown", true);
             anim.SetBool("MoveRight", false);
             anim.SetBool("MoveLeft", false);
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (CrossPlatformInputManager.GetAxis("Horizontal") > 0)
         {
             anim.SetBool("MoveUp", false);
             anim.SetBool("MoveRight", true);
             anim.SetBool("MoveLeft", false);
             anim.SetBool("MoveDown", false);
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (CrossPlatformInputManager.GetAxis("Horizontal") < 0)
         {
             anim.SetBool("MoveUp", false);
             anim.SetBool("MoveRight", false);

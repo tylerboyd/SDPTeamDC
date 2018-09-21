@@ -4,18 +4,19 @@ using UnityEngine;
 
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
+//Tobias McGee: 1323946
 
 public class EnemyFollow : MonoBehaviour {
 
     public Transform target;
     public float speed;
-    public float speed2 = 0;
     public Rigidbody2D rb;
     public bool isMoving, playerMoving;
     private Vector2 lastMove;
     private Animator anim;
     private GameObject enemy;
-    private GameObject wall;
+    public GameObject bloodSplash;
+    public int health;
 
     // Use this for initialization
     void Start ()
@@ -24,7 +25,6 @@ public class EnemyFollow : MonoBehaviour {
         anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Hero").GetComponent<Transform>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-        wall = GameObject.FindGameObjectWithTag("Collision_Wall");
         rb = GetComponent<Rigidbody2D>();
         isMoving = false;
     }
@@ -32,8 +32,44 @@ public class EnemyFollow : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        isMoving = true;
+        //if the player character is far enough away, start moving
+        if(Vector3.Distance(transform.position, target.position) > 3.0f)
+        {
+            isMoving = true;
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        }
 
+        //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
+        //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
+        //Otherwise move toward the Hero.
+
+        if (isMoving)
+        {
+            if (Vector3.Distance(transform.position, target.position) <= 1.0f)
+            {
+                rb.isKinematic = true;
+                return;
+            }
+            else
+            {
+                rb.isKinematic = false;
+                //Moves the enemies position towards the target("Hero") against a fixed speed
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            }
+        }
+
+        //Kill the enemy if their health drops to 0 or below
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            Debug.LogFormat( gameObject.name + " was killed");
+        }
+
+        /*****************************************
+        Not needed for sprint 1
+        *****************************************/
+        /*
+        //Changes enemy facing direction towards the player
         //left and right
         if (enemy.transform.position.x > 0.0f || enemy.transform.position.x < -0.0f)
         {
@@ -52,42 +88,13 @@ public class EnemyFollow : MonoBehaviour {
         anim.SetBool("isMoving", playerMoving);
         anim.SetFloat("LastMoveX", lastMove.x);
         anim.SetFloat("LastMoveY", lastMove.y);
-
-        //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
-        //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
-        //Otherwise move toward the Hero.
-        //this ray will generate a vector which points from the center of 
-        //the falling object TO object hit. You subtract where you want to go from where you are
-
-
-        if (isMoving)
-        {
-            if (Vector3.Distance(transform.position, target.position) <= 1.0f)
-            {
-                rb.isKinematic = true;
-                return;
-            }
-            else
-            {
-                rb.isKinematic = false;
-                //Moves the enemies position towards the target("Hero") against a fixed speed
-                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            }
-        }
-
-        //var direction = Vector3.zero;
-        //float distanceToStop = 1.0f;
-        //if (Vector3.Distance(transform.position, target.position) > distanceToStop)
-        //{
-        //    direction = target.position - transform.position;
-        //    rb.AddRelativeForce(direction.normalized * speed, ForceMode2D.Force);
-
-        //}
+        */
     }
 
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        /*
         if (col.gameObject==wall)
         {
             isMoving = false;
@@ -99,15 +106,11 @@ public class EnemyFollow : MonoBehaviour {
             {
                 //Down
                 Debug.Log("Down");
-                transform.position = Vector2.MoveTowards(transform.position, transform.up*10, speed * Time.deltaTime);
-                transform.position = Vector2.MoveTowards(transform.position, transform.right*10, speed * Time.deltaTime);
             }
             if (Mathf.Approximately(angle, 180))
             {
                 //Up
                 Debug.Log("Up");
-                transform.position = Vector2.MoveTowards(transform.position, -transform.up*10, speed * Time.deltaTime);
-                transform.position = Vector2.MoveTowards(transform.position, transform.right*5, speed * Time.deltaTime);
             }
             if (Mathf.Approximately(angle, 90))
             {
@@ -116,17 +119,27 @@ public class EnemyFollow : MonoBehaviour {
                 if (cross.y > 0)
                 { // left side of the player
                     Debug.Log("Left");
-
-                    transform.position = Vector2.MoveTowards(transform.position, transform.right*10, speed * Time.deltaTime);
-                    transform.position = Vector2.MoveTowards(transform.position, -transform.up*10, speed * Time.deltaTime);
                 }
                 else
                 { // right side of the player
                     Debug.Log("Right");
-                    transform.position = Vector2.MoveTowards(transform.position, -transform.right*10, speed * Time.deltaTime);
-                    transform.position = Vector2.MoveTowards(transform.position, -transform.up*10, speed * Time.deltaTime);
                 }
             }
+            
         }
+        */
+        if(col.gameObject.name.Equals("Player"))
+        {
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            isMoving = false;
+            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Instantiate(bloodSplash, transform.position, Quaternion.identity);
+        health -= damage;
+        Debug.Log("Damage dealt");
     }
 }
