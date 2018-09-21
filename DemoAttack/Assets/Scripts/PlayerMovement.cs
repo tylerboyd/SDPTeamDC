@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Timothy Serrano: 1394556
+//Andrew Bycroft: 16948980
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 movement_vector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 movement_vector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (!attacking)
         {
