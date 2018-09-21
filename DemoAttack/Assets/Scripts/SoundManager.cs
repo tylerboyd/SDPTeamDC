@@ -39,6 +39,7 @@ public class SoundManager : MonoBehaviour
         int index = Random.Range(0, clips.Length);
         AudioClip clip = clips[index];
 
+        //BUGGED
         efxSource2.clip = clip;
         efxSource2.pitch = pitch;
         efxSource2.Play();
