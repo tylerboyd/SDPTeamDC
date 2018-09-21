@@ -13133,10 +13133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa16272abce77e43bb59bc353648144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efxSource: {fileID: 0}
-  musicSource: {fileID: 0}
-  lowPitchRange: 0.95
-  highPitchRange: 1.05
+  minPitch: 0.9
+  maxPitch: 1.1
+  efxSource1: {fileID: 1210987649}
+  efxSource2: {fileID: 1210987649}
 --- !u!1 &1285382525
 GameObject:
   m_ObjectHideFlags: 0
@@ -13397,6 +13397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 1717979958}
+  speed: 5
   attackTime: 0.3
   attackPos: {fileID: 2046922873}
   whatIsEnemies:
@@ -13404,6 +13405,10 @@ MonoBehaviour:
     m_Bits: 2048
   attackRange: 3.5
   damage: 1
+  attackSound1: {fileID: 0}
+  attackSound2: {fileID: 0}
+  walkSound1: {fileID: 0}
+  walkSound2: {fileID: 0}
 --- !u!95 &1717979956
 Animator:
   serializedVersion: 3
