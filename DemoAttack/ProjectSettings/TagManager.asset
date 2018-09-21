@@ -18,8 +18,8 @@ TagManager:
   - 
   - Collidable
   - PassThrough
-  - 
-  - 
+  - Particles
+  - Enemies
   - 
   - 
   - 
