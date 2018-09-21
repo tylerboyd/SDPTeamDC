@@ -10,13 +10,14 @@ public class EnemyFollow : MonoBehaviour {
 
     public Transform target;
     public float speed;
-    public float speed2 = 0;
     public Rigidbody2D rb;
     public bool isMoving, playerMoving;
     private Vector2 lastMove;
     private Animator anim;
     private GameObject enemy;
     private GameObject wall;
+    public GameObject bloodSplash;
+    public int health;
 
     // Use this for initialization
     void Start ()
@@ -34,7 +35,7 @@ public class EnemyFollow : MonoBehaviour {
     void FixedUpdate()
     {
         //if the player character is far enough away, start moving
-        if(Vector3.Distance(transform.position, target.position) > 2.0f)
+        if(Vector3.Distance(transform.position, target.position) > 3.0f)
         {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
@@ -82,14 +83,10 @@ public class EnemyFollow : MonoBehaviour {
             }
         }
 
-        //var direction = Vector3.zero;
-        //float distanceToStop = 1.0f;
-        //if (Vector3.Distance(transform.position, target.position) > distanceToStop)
-        //{
-        //    direction = target.position - transform.position;
-        //    rb.AddRelativeForce(direction.normalized * speed, ForceMode2D.Force);
-
-        //}
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -136,11 +133,18 @@ public class EnemyFollow : MonoBehaviour {
             }
         }
 
-        if(col.gameObject.name == "Player")
+        if(col.gameObject.name.Equals("Player"))
         {
             GetComponent<Rigidbody2D>().isKinematic = true;
             isMoving = false;
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Instantiate(bloodSplash, transform.position, Quaternion.identity);
+        health -= damage;
+        Debug.Log("DamaGE TAKEN G");
     }
 }
