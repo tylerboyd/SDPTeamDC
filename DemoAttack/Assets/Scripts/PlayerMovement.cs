@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 anim.SetBool("isWalking", false);
-                SoundManager.Instance.RandomPlaySource2(walkSound1, walkSound2);
+                SoundManager.Instance.RandomPlayWalkingSource(walkSound1, walkSound2);
             }
 
             rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * speed);
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         else if(attackTimeCounter > 0)
         {
             //timeBtwAttack from blackthornprod
-            SoundManager.Instance.RandomPlaySource1(attackSound1, attackSound2);
+            SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
             attackTimeCounter -= Time.deltaTime;
         }
     }

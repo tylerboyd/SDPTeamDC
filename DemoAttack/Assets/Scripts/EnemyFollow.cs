@@ -5,6 +5,7 @@ using UnityEngine;
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
 //Tobias McGee: 1323946
+//Larry Zhao: 15913026
 
 public class EnemyFollow : MonoBehaviour {
 
@@ -17,6 +18,11 @@ public class EnemyFollow : MonoBehaviour {
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
+
+    public AudioClip enemyDeadSound1;
+    public AudioClip enemyDeadSound2;
+    public AudioClip enemyTakingDemageSound1;
+    public AudioClip enemyTakingDemageSound2;
 
     // Use this for initialization
     void Start ()
@@ -62,6 +68,8 @@ public class EnemyFollow : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(gameObject);
+
+            SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat( gameObject.name + " was killed");
         }
 
@@ -140,6 +148,8 @@ public class EnemyFollow : MonoBehaviour {
     {
         Instantiate(bloodSplash, transform.position, Quaternion.identity);
         health -= damage;
+
+        SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
         Debug.Log("Damage dealt");
     }
 }
