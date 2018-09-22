@@ -7,6 +7,7 @@ TagManager:
   - Hero
   - Enemy
   - Collision_Wall
+  - Attack Range
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Collidable
   - PassThrough
   - Particles
-  - 
-  - 
+  - Enemies
+  - Hero
   - 
   - 
   - 
