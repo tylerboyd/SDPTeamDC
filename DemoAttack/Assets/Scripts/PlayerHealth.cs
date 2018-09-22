@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        //Only let the player take damage set by the attack time
+        //Only let the player take damage when the counter hits zero
         if (attackTimeCounter <= 0)
         {
             attackTimeCounter = attackTime;

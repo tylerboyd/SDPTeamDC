@@ -118,15 +118,6 @@ public class EnemyFollow : MonoBehaviour {
             GetComponent<Rigidbody2D>().isKinematic = true;
             isMoving = false;
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-
-            //while (col.enabled)
-            //{
-            //    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
-            //    for (int i = 0; i < enemiesToDamage.Length; i++)
-            //    {
-            //        enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage(damage);
-            //    }
-            //}
         }
     }
 
