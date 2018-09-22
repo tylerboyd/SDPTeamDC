@@ -19,6 +19,16 @@ public class EnemyFollow : MonoBehaviour {
     public GameObject bloodSplash;
     public int health;
 
+    //The delay between attacking time, so animation is not spammed.
+    private bool attacking;
+    public float attackTime;
+    private float attackTimeCounter;
+
+    public Transform attackPos;
+    public LayerMask whatIsEnemies;
+    public float attackRange;
+    public int damage;
+
     public AudioClip enemyDeadSound1;
     public AudioClip enemyDeadSound2;
     public AudioClip enemyTakingDemageSound1;
@@ -44,6 +54,7 @@ public class EnemyFollow : MonoBehaviour {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
+
 
         //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
         //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
@@ -102,46 +113,54 @@ public class EnemyFollow : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        /*
-        if (col.gameObject==wall)
-        {
-            isMoving = false;
-            Vector3 hit = col.contacts[0].normal;
-            Debug.Log(hit);
-            float angle = Vector3.Angle(hit, Vector3.up);
-
-            if (Mathf.Approximately(angle, 0))
-            {
-                //Down
-                Debug.Log("Down");
-            }
-            if (Mathf.Approximately(angle, 180))
-            {
-                //Up
-                Debug.Log("Up");
-            }
-            if (Mathf.Approximately(angle, 90))
-            {
-                // Sides
-                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
-                if (cross.y > 0)
-                { // left side of the player
-                    Debug.Log("Left");
-                }
-                else
-                { // right side of the player
-                    Debug.Log("Right");
-                }
-            }
-            
-        }
-        */
         if(col.gameObject.name.Equals("Player"))
         {
             GetComponent<Rigidbody2D>().isKinematic = true;
             isMoving = false;
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+            //while (col.enabled)
+            //{
+            //    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+            //    for (int i = 0; i < enemiesToDamage.Length; i++)
+            //    {
+            //        enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+            //    }
+            //}
         }
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+            if (attackTimeCounter <= 0)
+            {
+                attacking = false;
+
+                if (col.gameObject.name.Equals("Player"))
+                {
+                    attackTimeCounter = attackTime;
+                    attacking = true;
+                    //rb.velocity = Vector2.zero;
+
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+                    }
+                }
+            else if (attackTimeCounter > 0)
+            {
+                //timeBtwAttack from blackthornprod
+                //SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
+                attackTimeCounter -= Time.deltaTime;
+            }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
     public void TakeDamage(int damage)
@@ -150,6 +169,6 @@ public class EnemyFollow : MonoBehaviour {
         health -= damage;
 
         SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
-        Debug.Log("Damage dealt");
+        Debug.LogFormat("Damage dealt to " + gameObject.name);
     }
 }
