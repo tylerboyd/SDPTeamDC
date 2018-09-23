@@ -14,7 +14,6 @@ public class EnemyFollow : MonoBehaviour {
     public Rigidbody2D rb;
     public bool isMoving;
     private int direction;
-    public Animator anim;
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
@@ -42,7 +41,6 @@ public class EnemyFollow : MonoBehaviour {
     void Start ()
     {
         //Sets the enemy to find the game object named "Hero" aka our character
-        anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Hero").GetComponent<Transform>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         rb = GetComponent<Rigidbody2D>();
@@ -50,7 +48,7 @@ public class EnemyFollow : MonoBehaviour {
         playerInRange = false;
         range = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Hero");
-        direction = anim.GetInteger("Direction");
+       // direction = anim.GetInteger("Direction");
     }
 
     // Update is called once per frame
@@ -108,7 +106,8 @@ public class EnemyFollow : MonoBehaviour {
                 attackTimeCounter -= Time.deltaTime;
             }
         }
-        
+        /*
+        //Minotaur animations, [Sprint 2]
         //Changes enemy facing direction towards the player
         //The Direction is Clockwise, 1,2,3,4; up,right,down,left respectively
         //right = 2
@@ -135,10 +134,11 @@ public class EnemyFollow : MonoBehaviour {
             anim.SetInteger("Direction", 3);
         }
 
-
         anim.SetFloat("MoveX", enemy.transform.position.x);
         anim.SetFloat("MoveY", enemy.transform.position.y);
         anim.SetInteger("Direction", direction);
+
+        */
     }
 
 

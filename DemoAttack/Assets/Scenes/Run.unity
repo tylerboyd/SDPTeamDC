@@ -14016,7 +14016,7 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 2048
-  attackRange: 3.5
+  attackRange: 1.83
   damage: 1
   attackSound1: {fileID: 8300000, guid: 1c61db572a3ac284a8aa9f7cef0cbb11, type: 3}
   attackSound2: {fileID: 8300000, guid: 289ad20298cbca2429dbcc777f3b17e1, type: 3}
@@ -14245,7 +14245,6 @@ MonoBehaviour:
   speed: 3
   rb: {fileID: 2034273284}
   isMoving: 0
-  anim: {fileID: 2034273286}
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
   health: 4
