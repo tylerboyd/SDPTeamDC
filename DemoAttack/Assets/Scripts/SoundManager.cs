@@ -1,74 +1,58 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Larry zhao: 15913026
-
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager _instance;
+    public AudioSource efxSource;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+    public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
+    public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
+    public float highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
 
-    public float minPitch = 0.9f;
-    public float maxPitch = 1.1f;
 
-    public AudioSource efxSource1;
-    public AudioSource efxSource2;
-    public AudioSource efxSource3;
-    public AudioSource efxSource4;
-
-    public static SoundManager Instance
+    void Awake()
     {
-        get { return _instance; }
+        //Check if there is already an instance of SoundManager
+        if (instance == null)
+            //if not, set it to this.
+            instance = this;
+        //If instance already exists:
+        else if (instance != this)
+            //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
+            Destroy(gameObject);
+
+        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Awake()
+
+    //Used to play single sound clips.
+    public void PlaySingle(AudioClip clip)
     {
-        _instance = this;
+        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
+        efxSource.clip = clip;
+
+        //Play the clip.
+        efxSource.Play();
     }
 
-    public void RandomPlayAttackSource(params AudioClip[] clips)
+
+    //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
+    public void RandomizeSfx(params AudioClip[] clips)
     {
-        float pitch = Random.Range(minPitch, maxPitch);
-        int index = Random.Range(0, clips.Length);
-        AudioClip clip = clips[index];
-        efxSource1.clip = clip;
-        efxSource1.pitch = pitch;
-        efxSource1.Play();
+        //Generate a random number between 0 and the length of our array of clips passed in.
+        int randomIndex = Random.Range(0, clips.Length);
+
+        //Choose a random pitch to play back our clip at between our high and low pitch ranges.
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+
+        //Set the pitch of the audio source to the randomly chosen pitch.
+        efxSource.pitch = randomPitch;
+
+        //Set the clip to the clip at our randomly chosen index.
+        efxSource.clip = clips[randomIndex];
+
+        //Play the clip.
+        efxSource.Play();
     }
-
-    public void RandomPlayWalkingSource(params AudioClip[] clips)
-    {
-        float pitch = Random.Range(minPitch, maxPitch);
-        int index = Random.Range(0, clips.Length);
-        AudioClip clip = clips[index];
-
-        //BUGGED
-        efxSource2.clip = clip;
-        efxSource2.pitch = pitch;
-        efxSource2.Play();
-    }
-
-    public void RandomPlayEnemyDeadSource(params AudioClip[] clips)
-    {
-        float pitch = Random.Range(minPitch, maxPitch);
-        int index = Random.Range(0, clips.Length);
-        AudioClip clip = clips[index];
-
-        //BUGGED
-        efxSource3.clip = clip;
-        efxSource3.pitch = pitch;
-        efxSource3.Play();
-    }
-
-    public void RandomPlayEnemyTakingDemageSource(params AudioClip[] clips)
-    {
-        float pitch = Random.Range(minPitch, maxPitch);
-        int index = Random.Range(0, clips.Length);
-        AudioClip clip = clips[index];
-
-        //BUGGED
-        efxSource4.clip = clip;
-        efxSource4.pitch = pitch;
-        efxSource4.Play();
-    }
-
 }
