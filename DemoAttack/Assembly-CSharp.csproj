@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ScoreTest.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\ChangeDirection.cs" />
      <Compile Include="Assets\Scripts\DestroyHitVisual.cs" />
@@ -73,16 +74,16 @@
      <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
      <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/Personal/Documents/GitHub/SDPTeamDC/SDPTeamDC/DemoAttack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Personal/Documents/GitHub/SDPTeamDC/SDPTeamDC/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/Personal/Documents/GitHub/SDPTeamDC/SDPTeamDC/DemoAttack/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Personal/Documents/GitHub/SDPTeamDC/SDPTeamDC/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
