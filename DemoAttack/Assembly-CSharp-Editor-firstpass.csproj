@@ -55,16 +55,16 @@
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-Andrew/DemoAttack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-Andrew/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-Andrew/DemoAttack/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-Andrew/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>E:/Downloads/SDPTeamDC-Andrew/SDPTeamDC-CurrentVersion/DemoAttack/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
