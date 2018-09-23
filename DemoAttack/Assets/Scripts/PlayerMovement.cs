@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //FOR JOYSTICK RUN THIS LINE (Must be on android build settings)
-        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxisRaw("Horizontal"), CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
         //FOR WASD RUN THIS LINE 
         //Vector2 movement_vector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
