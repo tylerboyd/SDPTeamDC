@@ -12,8 +12,9 @@ public class EnemyFollow : MonoBehaviour {
     public Transform target;
     public float speed;
     public Rigidbody2D rb;
-    public bool isMoving;
-    private int direction;
+    public bool isMoving, playerMoving;
+    private Vector2 lastMove;
+    private Animator anim;
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
@@ -34,13 +35,17 @@ public class EnemyFollow : MonoBehaviour {
 
     public AudioClip enemyDeadSound1;
     public AudioClip enemyDeadSound2;
-    public AudioClip enemyTakingDemageSound1;
-    public AudioClip enemyTakingDemageSound2;
+    public AudioClip enemyTakingDamageSound1;
+    public AudioClip enemyTakingDamageSound2;
+
+    private float takeDamageTimeCounter;
+    public float takeDamageAttackTime;
 
     // Use this for initialization
     void Start ()
     {
         //Sets the enemy to find the game object named "Hero" aka our character
+        anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Hero").GetComponent<Transform>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         rb = GetComponent<Rigidbody2D>();
@@ -48,7 +53,6 @@ public class EnemyFollow : MonoBehaviour {
         playerInRange = false;
         range = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Hero");
-       // direction = anim.GetInteger("Direction");
     }
 
     // Update is called once per frame
@@ -60,6 +64,7 @@ public class EnemyFollow : MonoBehaviour {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
+
 
         //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
         //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
@@ -84,6 +89,8 @@ public class EnemyFollow : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(gameObject);
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddScore");
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddGold");
 
             SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat( gameObject.name + " was killed");
@@ -106,38 +113,37 @@ public class EnemyFollow : MonoBehaviour {
                 attackTimeCounter -= Time.deltaTime;
             }
         }
+
+        if (takeDamageTimeCounter > 0)
+        {
+            takeDamageTimeCounter -= Time.deltaTime;
+        }
+
+
+
+        /*****************************************
+        Not needed for sprint 1
+        *****************************************/
         /*
-        //Minotaur animations, [Sprint 2]
         //Changes enemy facing direction towards the player
-        //The Direction is Clockwise, 1,2,3,4; up,right,down,left respectively
-        //right = 2
-        if (anim.GetFloat("MoveX") > 0.0f)
+        //left and right
+        if (enemy.transform.position.x > 0.0f || enemy.transform.position.x < -0.0f)
         {
-            anim.SetInteger("Direction", 2);
+            playerMoving = true;
+            lastMove = new Vector2(enemy.transform.position.x, 0f);
         }
 
-        //left = 4
-        if (anim.GetFloat("MoveX") < 0.0f)
+        if (enemy.transform.position.y > 0.0f || enemy.transform.position.y < -0.0f)
         {
-            anim.SetInteger("Direction", 4);
-        }
-
-        //up = 1
-        if (anim.GetFloat("MoveY") > 0.0f)
-        {
-            anim.SetInteger("Direction", 1);
-        }
-
-        //down = 3
-        if (anim.GetFloat("MoveY") < 0.0f)
-        {
-            anim.SetInteger("Direction", 3);
+            playerMoving = true;
+            lastMove = new Vector2(0f, enemy.transform.position.y);
         }
 
         anim.SetFloat("MoveX", enemy.transform.position.x);
         anim.SetFloat("MoveY", enemy.transform.position.y);
-        anim.SetInteger("Direction", direction);
-
+        anim.SetBool("isMoving", playerMoving);
+        anim.SetFloat("LastMoveX", lastMove.x);
+        anim.SetFloat("LastMoveY", lastMove.y);
         */
     }
 
@@ -205,10 +211,14 @@ public class EnemyFollow : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        Instantiate(bloodSplash, transform.position, Quaternion.identity);
-        health -= damage;
+        if (takeDamageTimeCounter <= 0)
+        {
+            takeDamageTimeCounter = takeDamageAttackTime;
+            Instantiate(bloodSplash, transform.position, Quaternion.identity);
+            health -= damage;
 
-        SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
-        Debug.LogFormat("Damage dealt to " + gameObject.name);
+            SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
+            Debug.LogFormat("Damage dealt to " + gameObject.name);
+        }
     }
 }
