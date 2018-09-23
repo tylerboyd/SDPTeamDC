@@ -14245,7 +14245,7 @@ MonoBehaviour:
   speed: 3
   rb: {fileID: 2034273284}
   isMoving: 0
-  playerMoving: 0
+  anim: {fileID: 2034273286}
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
   health: 4
@@ -14389,7 +14389,7 @@ Animator:
   m_GameObject: {fileID: 2034273279}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63efd922bbd444a46b91e97095ece9bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

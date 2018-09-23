@@ -12,9 +12,9 @@ public class EnemyFollow : MonoBehaviour {
     public Transform target;
     public float speed;
     public Rigidbody2D rb;
-    public bool isMoving, playerMoving;
-    private Vector2 lastMove;
-    private Animator anim;
+    public bool isMoving;
+    private int direction;
+    public Animator anim;
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
@@ -50,6 +50,7 @@ public class EnemyFollow : MonoBehaviour {
         playerInRange = false;
         range = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Hero");
+        direction = anim.GetInteger("Direction");
     }
 
     // Update is called once per frame
@@ -61,7 +62,6 @@ public class EnemyFollow : MonoBehaviour {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
-
 
         //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
         //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
@@ -108,33 +108,37 @@ public class EnemyFollow : MonoBehaviour {
                 attackTimeCounter -= Time.deltaTime;
             }
         }
-
-
-
-        /*****************************************
-        Not needed for sprint 1
-        *****************************************/
-        /*
+        
         //Changes enemy facing direction towards the player
-        //left and right
-        if (enemy.transform.position.x > 0.0f || enemy.transform.position.x < -0.0f)
+        //The Direction is Clockwise, 1,2,3,4; up,right,down,left respectively
+        //right = 2
+        if (anim.GetFloat("MoveX") > 0.0f)
         {
-            playerMoving = true;
-            lastMove = new Vector2(enemy.transform.position.x, 0f);
+            anim.SetInteger("Direction", 2);
         }
 
-        if (enemy.transform.position.y > 0.0f || enemy.transform.position.y < -0.0f)
+        //left = 4
+        if (anim.GetFloat("MoveX") < 0.0f)
         {
-            playerMoving = true;
-            lastMove = new Vector2(0f, enemy.transform.position.y);
+            anim.SetInteger("Direction", 4);
         }
+
+        //up = 1
+        if (anim.GetFloat("MoveY") > 0.0f)
+        {
+            anim.SetInteger("Direction", 1);
+        }
+
+        //down = 3
+        if (anim.GetFloat("MoveY") < 0.0f)
+        {
+            anim.SetInteger("Direction", 3);
+        }
+
 
         anim.SetFloat("MoveX", enemy.transform.position.x);
         anim.SetFloat("MoveY", enemy.transform.position.y);
-        anim.SetBool("isMoving", playerMoving);
-        anim.SetFloat("LastMoveX", lastMove.x);
-        anim.SetFloat("LastMoveY", lastMove.y);
-        */
+        anim.SetInteger("Direction", direction);
     }
 
 
