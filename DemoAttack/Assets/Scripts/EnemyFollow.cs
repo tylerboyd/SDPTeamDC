@@ -35,8 +35,11 @@ public class EnemyFollow : MonoBehaviour {
 
     public AudioClip enemyDeadSound1;
     public AudioClip enemyDeadSound2;
-    public AudioClip enemyTakingDemageSound1;
-    public AudioClip enemyTakingDemageSound2;
+    public AudioClip enemyTakingDamageSound1;
+    public AudioClip enemyTakingDamageSound2;
+
+    private float takeDamageTimeCounter;
+    public float takeDamageAttackTime;
 
     // Use this for initialization
     void Start ()
@@ -86,6 +89,8 @@ public class EnemyFollow : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(gameObject);
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddScore");
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddGold");
 
             SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat( gameObject.name + " was killed");
@@ -107,6 +112,11 @@ public class EnemyFollow : MonoBehaviour {
             {
                 attackTimeCounter -= Time.deltaTime;
             }
+        }
+
+        if (takeDamageTimeCounter > 0)
+        {
+            takeDamageTimeCounter -= Time.deltaTime;
         }
 
 
@@ -201,10 +211,14 @@ public class EnemyFollow : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        Instantiate(bloodSplash, transform.position, Quaternion.identity);
-        health -= damage;
+        if (takeDamageTimeCounter <= 0)
+        {
+            takeDamageTimeCounter = takeDamageAttackTime;
+            Instantiate(bloodSplash, transform.position, Quaternion.identity);
+            health -= damage;
 
-        SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
-        Debug.LogFormat("Damage dealt to " + gameObject.name);
+            SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
+            Debug.LogFormat("Damage dealt to " + gameObject.name);
+        }
     }
 }

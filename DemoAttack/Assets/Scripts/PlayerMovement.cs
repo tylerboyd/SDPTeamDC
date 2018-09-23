@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //FOR JOYSTICK RUN THIS LINE (Must be on android build settings)
-        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxisRaw("Horizontal"), CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
         //FOR WASD RUN THIS LINE 
         //Vector2 movement_vector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 attacking = true;
                 rb2D.velocity = Vector2.zero;
                 anim.SetBool("isAttacking", true);
+                SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
                 //THE CHANGES TO WORKING CODE
 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
@@ -98,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         else if(attackTimeCounter > 0)
         {
             //timeBtwAttack from blackthornprod
-            SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
             attackTimeCounter -= Time.deltaTime;
         }
     }
