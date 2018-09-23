@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 attacking = true;
                 rb2D.velocity = Vector2.zero;
                 anim.SetBool("isAttacking", true);
+                SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
                 //THE CHANGES TO WORKING CODE
 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
@@ -98,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         else if(attackTimeCounter > 0)
         {
             //timeBtwAttack from blackthornprod
-            SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
             attackTimeCounter -= Time.deltaTime;
         }
     }
