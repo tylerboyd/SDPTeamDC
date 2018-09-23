@@ -14255,10 +14255,11 @@ MonoBehaviour:
   damage: 1
   enemyDeadSound1: {fileID: 8300000, guid: c8f887f5db2f54fd0bb2811f0298ae03, type: 3}
   enemyDeadSound2: {fileID: 8300000, guid: c8f887f5db2f54fd0bb2811f0298ae03, type: 3}
-  enemyTakingDemageSound1: {fileID: 8300000, guid: 8b1ef8da5c2bc489a9c171bf55979bbb,
+  enemyTakingDamageSound1: {fileID: 8300000, guid: 8b1ef8da5c2bc489a9c171bf55979bbb,
     type: 3}
-  enemyTakingDemageSound2: {fileID: 8300000, guid: d8d235905369c404bb27ae267668350c,
+  enemyTakingDamageSound2: {fileID: 8300000, guid: d8d235905369c404bb27ae267668350c,
     type: 3}
+  takeDamageAttackTime: 0.5
 --- !u!58 &2034273281
 CircleCollider2D:
   m_ObjectHideFlags: 0
