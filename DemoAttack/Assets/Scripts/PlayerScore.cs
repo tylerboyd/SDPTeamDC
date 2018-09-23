@@ -41,7 +41,7 @@ public class PlayerScore : MonoBehaviour {
         SetGoldText();
     }
 
-    /*void OnGUI()
+    void OnGUI()
     {
         if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
         {
@@ -51,7 +51,7 @@ public class PlayerScore : MonoBehaviour {
         {
             AddGold();
         }
-    }*/
+    }
 
    /* void OnCompletion()
     {

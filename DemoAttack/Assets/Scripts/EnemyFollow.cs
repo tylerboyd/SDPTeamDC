@@ -18,11 +18,28 @@ public class EnemyFollow : MonoBehaviour {
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
+    private GameObject player;
+
+    //The delay between attacking time, so animation is not spammed.
+    private bool attacking;
+    public float attackTime;
+    private float attackTimeCounter;
+
+    //For calculating if the player is in range
+    private CircleCollider2D range;
+    private bool playerInRange;
+
+    public Transform attackPos;
+    public float attackRange;
+    public int damage;
 
     public AudioClip enemyDeadSound1;
     public AudioClip enemyDeadSound2;
-    public AudioClip enemyTakingDemageSound1;
-    public AudioClip enemyTakingDemageSound2;
+    public AudioClip enemyTakingDamageSound1;
+    public AudioClip enemyTakingDamageSound2;
+
+    private float takeDamageTimeCounter;
+    public float takeDamageAttackTime;
 
     // Use this for initialization
     void Start ()
@@ -31,9 +48,11 @@ public class EnemyFollow : MonoBehaviour {
         anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Hero").GetComponent<Transform>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-        
         rb = GetComponent<Rigidbody2D>();
         isMoving = false;
+        playerInRange = false;
+        range = GetComponent<CircleCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Hero");
     }
 
     // Update is called once per frame
@@ -45,6 +64,7 @@ public class EnemyFollow : MonoBehaviour {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
+
 
         //Checks how far the enemy is from the Hero. If it is close, change it to a kinematic rigidbody 
         //to stop it from moving the Hero and other enemies. This also stops the Hero from moving the enemies.
@@ -68,12 +88,38 @@ public class EnemyFollow : MonoBehaviour {
         //Kill the enemy if their health drops to 0 or below
         if (health <= 0)
         {
-            Destroy(gameObject);            
-            SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
-            Debug.LogFormat( gameObject.name + " was killed");
+            Destroy(gameObject);
             PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddScore");
             PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddGold");
+
+            SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
+            Debug.LogFormat( gameObject.name + " was killed");
         }
+
+        //Attack the hero if in range
+        if(playerInRange == true)
+        {
+            if (attackTimeCounter <= 0)
+            {
+                attackTimeCounter = attackTime;
+                attacking = true;
+
+                player.GetComponent<PlayerHealth>().TakeDamage(damage);
+                Debug.LogFormat("Counter reset");
+
+            }
+            else if (attackTimeCounter > 0)
+            {
+                attackTimeCounter -= Time.deltaTime;
+            }
+        }
+
+        if (takeDamageTimeCounter > 0)
+        {
+            takeDamageTimeCounter -= Time.deltaTime;
+        }
+
+
 
         /*****************************************
         Not needed for sprint 1
@@ -104,40 +150,6 @@ public class EnemyFollow : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        /*
-        if (col.gameObject==wall)
-        {
-            isMoving = false;
-            Vector3 hit = col.contacts[0].normal;
-            Debug.Log(hit);
-            float angle = Vector3.Angle(hit, Vector3.up);
-
-            if (Mathf.Approximately(angle, 0))
-            {
-                //Down
-                Debug.Log("Down");
-            }
-            if (Mathf.Approximately(angle, 180))
-            {
-                //Up
-                Debug.Log("Up");
-            }
-            if (Mathf.Approximately(angle, 90))
-            {
-                // Sides
-                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
-                if (cross.y > 0)
-                { // left side of the player
-                    Debug.Log("Left");
-                }
-                else
-                { // right side of the player
-                    Debug.Log("Right");
-                }
-            }
-            
-        }
-        */
         if(col.gameObject.name.Equals("Player"))
         {
             GetComponent<Rigidbody2D>().isKinematic = true;
@@ -146,12 +158,67 @@ public class EnemyFollow : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name.Equals("Player"))
+        {
+            playerInRange = true;
+            //Debug.LogFormat("Player entered range");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.name.Equals("Player"))
+        {
+            playerInRange = false;
+            //Debug.LogFormat("Player left range");
+        }
+    }
+
+    /*void OnCollisionStay2D(Collision2D col)
+    {
+            if (attackTimeCounter <= 0)
+            {
+                attacking = false;
+
+                if (col.gameObject.name.Equals("Player"))
+                {
+                    attackTimeCounter = attackTime;
+                    attacking = true;
+                    //rb.velocity = Vector2.zero;
+
+                    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                    for (int i = 0; i < enemiesToDamage.Length; i++)
+                    {
+                        enemiesToDamage[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+                    }
+                }
+            else if (attackTimeCounter > 0)
+            {
+                //timeBtwAttack from blackthornprod
+                //SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
+                attackTimeCounter -= Time.deltaTime;
+            }
+        }
+    }*/
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+    }
+
     public void TakeDamage(int damage)
     {
-        Instantiate(bloodSplash, transform.position, Quaternion.identity);
-        health -= damage;
+        if (takeDamageTimeCounter <= 0)
+        {
+            takeDamageTimeCounter = takeDamageAttackTime;
+            Instantiate(bloodSplash, transform.position, Quaternion.identity);
+            health -= damage;
 
-        SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
-        Debug.Log("Damage dealt");
+            SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
+            Debug.LogFormat("Damage dealt to " + gameObject.name);
+        }
     }
 }
