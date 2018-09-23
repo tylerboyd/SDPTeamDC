@@ -36,11 +36,16 @@ public class PlayerHealth : MonoBehaviour {
             Debug.LogFormat(gameObject.name + " was killed");
         }
 
+        if (attackTimeCounter > 0)
+        {
+            attackTimeCounter -= Time.deltaTime;
+        }
+
     }
 
     public void TakeDamage(int damage)
     {
-        //Only let the player take damage when the counter hits zero
+        //Only let the player take damage when the counter is at zero
         if (attackTimeCounter <= 0)
         {
             attackTimeCounter = attackTime;
@@ -51,23 +56,5 @@ public class PlayerHealth : MonoBehaviour {
             //SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
             Debug.LogFormat("Damage dealt to " + gameObject.name);
         }
-        else if (attackTimeCounter > 0)
-        {
-            attackTimeCounter -= Time.deltaTime;
-        }
     }
 }
-
-//private void OnCollisionEnter2D(Collision2D col)
-//    {
-//        if (col.gameObject.tag.Equals("Enemy"))
-//        {
-//            if(attacking == false)
-//            {
-//                attacking = true;
-//                attackTimeCounter = attackTime;
-//                health -= col.gameObject.GetComponent<EnemyFollow>().damage;
-//            }
-//        }
-//    }
-//}

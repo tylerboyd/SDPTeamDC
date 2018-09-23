@@ -7854,7 +7854,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717979950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.58, y: -0.39, z: 0}
+  m_LocalPosition: {x: -1.62, y: 0.45, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 2009972929}
@@ -14222,6 +14222,7 @@ GameObject:
   - component: {fileID: 2034273285}
   - component: {fileID: 2034273286}
   - component: {fileID: 2034273280}
+  - component: {fileID: 2034273281}
   m_Layer: 11
   m_Name: EnemyMinotaur
   m_TagString: Enemy
@@ -14250,9 +14251,6 @@ MonoBehaviour:
   health: 4
   attackTime: 1
   attackPos: {fileID: 179346684}
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 4096
   attackRange: 2
   damage: 1
   enemyDeadSound1: {fileID: 8300000, guid: c8f887f5db2f54fd0bb2811f0298ae03, type: 3}
@@ -14261,6 +14259,21 @@ MonoBehaviour:
     type: 3}
   enemyTakingDemageSound2: {fileID: 8300000, guid: d8d235905369c404bb27ae267668350c,
     type: 3}
+--- !u!58 &2034273281
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034273279}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.25
 --- !u!212 &2034273282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14314,7 +14327,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2034273279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.82, y: 1.02, z: 0}
+  m_LocalPosition: {x: 3.3, y: 0.18, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 1624754591}

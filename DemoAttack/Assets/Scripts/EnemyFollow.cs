@@ -18,21 +18,28 @@ public class EnemyFollow : MonoBehaviour {
     private GameObject enemy;
     public GameObject bloodSplash;
     public int health;
+    private GameObject player;
 
     //The delay between attacking time, so animation is not spammed.
     private bool attacking;
     public float attackTime;
     private float attackTimeCounter;
 
+    //For calculating if the player is in range
+    private CircleCollider2D range;
+    private bool playerInRange;
+
     public Transform attackPos;
-    public LayerMask whatIsEnemies;
     public float attackRange;
     public int damage;
 
     public AudioClip enemyDeadSound1;
     public AudioClip enemyDeadSound2;
-    public AudioClip enemyTakingDemageSound1;
-    public AudioClip enemyTakingDemageSound2;
+    public AudioClip enemyTakingDamageSound1;
+    public AudioClip enemyTakingDamageSound2;
+
+    private float takeDamageTimeCounter;
+    public float takeDamageAttackTime;
 
     // Use this for initialization
     void Start ()
@@ -43,6 +50,9 @@ public class EnemyFollow : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         rb = GetComponent<Rigidbody2D>();
         isMoving = false;
+        playerInRange = false;
+        range = GetComponent<CircleCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Hero");
     }
 
     // Update is called once per frame
@@ -84,6 +94,31 @@ public class EnemyFollow : MonoBehaviour {
             Debug.LogFormat( gameObject.name + " was killed");
         }
 
+        //Attack the hero if in range
+        if(playerInRange == true)
+        {
+            if (attackTimeCounter <= 0)
+            {
+                attackTimeCounter = attackTime;
+                attacking = true;
+
+                player.GetComponent<PlayerHealth>().TakeDamage(damage);
+                Debug.LogFormat("Counter reset");
+
+            }
+            else if (attackTimeCounter > 0)
+            {
+                attackTimeCounter -= Time.deltaTime;
+            }
+        }
+
+        if (takeDamageTimeCounter > 0)
+        {
+            takeDamageTimeCounter -= Time.deltaTime;
+        }
+
+
+
         /*****************************************
         Not needed for sprint 1
         *****************************************/
@@ -121,7 +156,25 @@ public class EnemyFollow : MonoBehaviour {
         }
     }
 
-    void OnCollisionStay2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name.Equals("Player"))
+        {
+            playerInRange = true;
+            //Debug.LogFormat("Player entered range");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.name.Equals("Player"))
+        {
+            playerInRange = false;
+            //Debug.LogFormat("Player left range");
+        }
+    }
+
+    /*void OnCollisionStay2D(Collision2D col)
     {
             if (attackTimeCounter <= 0)
             {
@@ -146,7 +199,7 @@ public class EnemyFollow : MonoBehaviour {
                 attackTimeCounter -= Time.deltaTime;
             }
         }
-    }
+    }*/
 
     void OnDrawGizmosSelected()
     {
@@ -156,10 +209,14 @@ public class EnemyFollow : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        Instantiate(bloodSplash, transform.position, Quaternion.identity);
-        health -= damage;
+        if (takeDamageTimeCounter <= 0)
+        {
+            takeDamageTimeCounter = takeDamageAttackTime;
+            Instantiate(bloodSplash, transform.position, Quaternion.identity);
+            health -= damage;
 
-        SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
-        Debug.LogFormat("Damage dealt to " + gameObject.name);
+            SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
+            Debug.LogFormat("Damage dealt to " + gameObject.name);
+        }
     }
 }
