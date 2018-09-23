@@ -89,6 +89,8 @@ public class EnemyFollow : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(gameObject);
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddScore");
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddGold");
 
             SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat( gameObject.name + " was killed");
