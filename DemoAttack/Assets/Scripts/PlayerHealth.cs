@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Tobias McGee: 1323946
 //Andrew Bycroft: 16948980
@@ -19,7 +20,6 @@ public class PlayerHealth : MonoBehaviour {
 
     public AudioClip heroTakingDamageSound1;
     public AudioClip heroTakingDamageSound2;
-    
 
     // Use this for initialization
     void Start () {
@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 
             //SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat(gameObject.name + " was killed");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);
         }
 
         if (attackTimeCounter > 0)
