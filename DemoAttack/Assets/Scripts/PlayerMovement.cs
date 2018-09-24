@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
-//Larry Zhou:
+//Larry Zhao: 15913026
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //FOR JOYSTICK RUN THIS LINE (Must be on android build settings)
-        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        Vector2 movement_vector = new Vector2(CrossPlatformInputManager.GetAxisRaw("Horizontal"), CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
         //FOR WASD RUN THIS LINE 
         //Vector2 movement_vector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 anim.SetBool("isWalking", false);
-                SoundManager.Instance.RandomPlaySource2(walkSound1, walkSound2);
+                SoundManager.Instance.RandomPlayWalkingSource(walkSound1, walkSound2);
             }
 
             rb2D.MovePosition(rb2D.position + movement_vector * Time.deltaTime * speed);
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 attacking = true;
                 rb2D.velocity = Vector2.zero;
                 anim.SetBool("isAttacking", true);
+                SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
                 //THE CHANGES TO WORKING CODE
 
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
@@ -98,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         else if(attackTimeCounter > 0)
         {
             //timeBtwAttack from blackthornprod
-            SoundManager.Instance.RandomPlaySource1(attackSound1, attackSound2);
             attackTimeCounter -= Time.deltaTime;
         }
     }

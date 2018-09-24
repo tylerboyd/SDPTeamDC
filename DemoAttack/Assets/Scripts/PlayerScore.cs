@@ -1,39 +1,69 @@
-﻿using System.Collections;
+﻿//Tarran O'Shaughness hcv3389
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScore : MonoBehaviour
-{
+public class PlayerScore : MonoBehaviour {
 
-    private int count;
-    public Text countText;
+    public GameObject playerscores;
+    
+    public Text ScoreText;
+    public Text GoldText;
+    public int score;
+    public int gold;
 
-    void Start()
+	void Awake () {
+        SetScoreText();
+        SetGoldText();
+	}
+	
+    void SetScoreText()
     {
-        count = 0;
-        SetCountText();
-    }
-
-    void OnTriggerEnter(Collider Enemy)
-    {
-        if (Enemy.gameObject.CompareTag("Enemy 1"))
-        {
-            Enemy.gameObject.SetActive(false);
-            //Enemy.gameObject.Destroy();
-            count = count + 1;
-            SetCountText();
-        }
+        ScoreText.text = "Score: " + score.ToString();
     }
 
     void AddScore()
     {
-        count = count + 1;
-        SetCountText();
+        score = score + 200;
+        SetScoreText();
     }
 
-    void SetCountText()
+    void SetGoldText()
     {
-        countText.text = "Score: " + count.ToString();
+        GoldText.text = "Gold: " + gold.ToString();
     }
-}
+
+    void AddGold()
+    {
+        gold = gold + 20;
+        SetGoldText();
+    }
+
+    /*void OnGUI()for testing
+    {
+        if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
+        {
+            AddScore();
+        }
+        if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
+        {
+            AddGold();
+        }*/
+    }
+
+   /* void OnCompletion()
+    {
+        if//user is defeated
+        {
+            PlayerInfo.info.gold = PlayerInfo.info.gold + gold;
+            if (PlayerInfo.info.highscore < score)
+            {
+                PlayerInfo.info.highscore = score;
+                PlayerInfo.info.Save();
+            }
+            PlayerInfo.info.Save();
+        }
+    }
+}*/

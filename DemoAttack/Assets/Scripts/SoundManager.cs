@@ -12,6 +12,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource efxSource1;
     public AudioSource efxSource2;
+    public AudioSource efxSource3;
+    public AudioSource efxSource4;
+    public AudioSource efxSource5;
 
     public static SoundManager Instance
     {
@@ -23,7 +26,7 @@ public class SoundManager : MonoBehaviour
         _instance = this;
     }
 
-    public void RandomPlaySource1(params AudioClip[] clips)
+    public void RandomPlayAttackSource(params AudioClip[] clips)
     {
         float pitch = Random.Range(minPitch, maxPitch);
         int index = Random.Range(0, clips.Length);
@@ -33,7 +36,7 @@ public class SoundManager : MonoBehaviour
         efxSource1.Play();
     }
 
-    public void RandomPlaySource2(params AudioClip[] clips)
+    public void RandomPlayWalkingSource(params AudioClip[] clips)
     {
         float pitch = Random.Range(minPitch, maxPitch);
         int index = Random.Range(0, clips.Length);
@@ -45,5 +48,40 @@ public class SoundManager : MonoBehaviour
         efxSource2.Play();
     }
 
+    public void RandomPlayEnemyDeadSource(params AudioClip[] clips)
+    {
+        float pitch = Random.Range(minPitch, maxPitch);
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        //BUGGED
+        efxSource3.clip = clip;
+        efxSource3.pitch = pitch;
+        efxSource3.Play();
+    }
+
+    public void RandomPlayEnemyTakingDamageSource(params AudioClip[] clips)
+    {
+        float pitch = Random.Range(minPitch, maxPitch);
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        //BUGGED
+        efxSource4.clip = clip;
+        efxSource4.pitch = pitch;
+        efxSource4.Play();
+    }
+
+    public void RandomPlayHeroTakingDamageSource(params AudioClip[] clips)
+    {
+        float pitch = Random.Range(minPitch, maxPitch);
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        //BUGGED
+        efxSource5.clip = clip;
+        efxSource5.pitch = pitch;
+        efxSource5.Play();
+    }
 
 }
