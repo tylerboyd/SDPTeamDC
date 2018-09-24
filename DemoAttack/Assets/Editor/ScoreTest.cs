@@ -5,31 +5,35 @@ using System.Collections;
 
 public class ScoreTest
 {
-
     [Test]
-    public void ScoreShouldIncreaseTest()
+    public void ScoreDoesIncrease()
     {
-        PlayerScore playerScore = new PlayerScore();
-        var originalScore = playerScore.score;
+        //Arrange
+        GameObject gameObject = new GameObject();
+        gameObject.AddComponent<PlayerScore>();
+        var starting_score = 400;
+        var expected_score = 600;
 
-        playerScore.SendMessage("AddScore");
+        //Act
+        var new_score = gameObject.GetComponent<PlayerScore>().AddScore_Test(starting_score);
 
-        Assert.AreEqual(originalScore + 200, playerScore.score);
-        // Use the Assert class to test conditions.
+        //Assert
+        Assert.AreEqual(expected_score, new_score);
     }
 
-    // A UnityTest behaves like a coroutine in PlayMode
-    // and allows you to yield null to skip a frame in EditMode
-    [UnityTest]
-    public IEnumerator ScoreTestWithEnumeratorPasses() {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
+    [Test]
+    public void GoldDoesIncrease()
+    {
+        //Arrange
+        GameObject gameObject = new GameObject();
+        gameObject.AddComponent<PlayerScore>();
+        var starting_gold = 230;
+        var expected_gold = 250;
 
-        var score = GameObject.FindGameObjectWithTag("Hero");
+        //Act
+        var new_gold = gameObject.GetComponent<PlayerScore>().AddGold_Test(starting_gold);
 
-
-        Assert.AreEqual(200, score);
-
-        yield return null;
+        //Assert
+        Assert.AreEqual(expected_gold, new_gold);
     }
 }

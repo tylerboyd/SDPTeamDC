@@ -30,6 +30,12 @@ public class PlayerScore : MonoBehaviour {
         SetScoreText();
     }
 
+    public int AddScore_Test(int score)
+    {
+        score = score + 200;
+        return score;
+    }
+
     void SetGoldText()
     {
         GoldText.text = "Gold: " + gold.ToString();
@@ -39,6 +45,12 @@ public class PlayerScore : MonoBehaviour {
     {
         gold = gold + 20;
         SetGoldText();
+    }
+
+    public int AddGold_Test(int gold)
+    {
+        gold = gold + 20;
+        return gold;
     }
 
     /*void OnGUI()for testing
@@ -51,7 +63,7 @@ public class PlayerScore : MonoBehaviour {
         {
             AddGold();
         }*/
-    }
+}
 
    /* void OnCompletion()
     {
