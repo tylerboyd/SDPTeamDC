@@ -369,7 +369,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 361301148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.3, y: 66, z: -0.10253525}
+  m_LocalPosition: {x: -145.55, y: 80.55, z: -0.10253525}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 721935135}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 514027736}
   m_Layer: 0
-  m_Name: MenuButtons
+  m_Name: OptionsMenuButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.833475
+  orthographic size: 6.528118
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -698,7 +698,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 876557455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -105.91, y: -47.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2024,7 +2024,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1950114966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.4, y: -56.51, z: 0}
+  m_LocalPosition: {x: -190.4, y: -41.96, z: 0}
   m_LocalScale: {x: 1.09, y: 1.09, z: 1.09}
   m_Children: []
   m_Father: {fileID: 696840995}
@@ -2891,7 +2891,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1830045869}
+      - m_Target: {fileID: 701245655}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:

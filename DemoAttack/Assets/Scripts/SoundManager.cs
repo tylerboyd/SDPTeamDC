@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource efxSource2;
     public AudioSource efxSource3;
     public AudioSource efxSource4;
+    public AudioSource efxSource5;
 
     public static SoundManager Instance
     {
@@ -59,7 +60,7 @@ public class SoundManager : MonoBehaviour
         efxSource3.Play();
     }
 
-    public void RandomPlayEnemyTakingDemageSource(params AudioClip[] clips)
+    public void RandomPlayEnemyTakingDamageSource(params AudioClip[] clips)
     {
         float pitch = Random.Range(minPitch, maxPitch);
         int index = Random.Range(0, clips.Length);
@@ -69,6 +70,18 @@ public class SoundManager : MonoBehaviour
         efxSource4.clip = clip;
         efxSource4.pitch = pitch;
         efxSource4.Play();
+    }
+
+    public void RandomPlayHeroTakingDamageSource(params AudioClip[] clips)
+    {
+        float pitch = Random.Range(minPitch, maxPitch);
+        int index = Random.Range(0, clips.Length);
+        AudioClip clip = clips[index];
+
+        //BUGGED
+        efxSource5.clip = clip;
+        efxSource5.pitch = pitch;
+        efxSource5.Play();
     }
 
 }

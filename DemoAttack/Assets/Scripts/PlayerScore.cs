@@ -14,7 +14,16 @@ public class PlayerScore : MonoBehaviour {
     public int score;
     public int gold;
 
+    public int Score_Test(int score, int score_increment)
+    {
+        score += score_increment;
+
+        return score;
+    }
+
 	void Awake () {
+        gold = 0;
+        score = 0;
         SetScoreText();
         SetGoldText();
 	}
@@ -41,7 +50,7 @@ public class PlayerScore : MonoBehaviour {
         SetGoldText();
     }
 
-    void OnGUI()
+    /*void OnGUI()for testing
     {
         if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
         {
@@ -50,7 +59,7 @@ public class PlayerScore : MonoBehaviour {
         if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
         {
             AddGold();
-        }
+        }*/
     }
 
    /* void OnCompletion()
@@ -65,5 +74,5 @@ public class PlayerScore : MonoBehaviour {
             }
             PlayerInfo.info.Save();
         }
-    }*/
-}
+    }
+}*/

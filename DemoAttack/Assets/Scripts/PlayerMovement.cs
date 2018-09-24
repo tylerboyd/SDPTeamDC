@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 //Timothy Serrano: 1394556
 //Andrew Bycroft: 16948980
-//Larry Zhou:
+//Larry Zhao: 15913026
 
 public class PlayerMovement : MonoBehaviour
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Tyler Boyd: 16951977
+//Tobias McGee: 1323946
 
 public class GameHandler : MonoBehaviour {
 
@@ -11,9 +12,9 @@ public class GameHandler : MonoBehaviour {
 
     private void Start()
     {
-        HealthSystem healthSystem = new HealthSystem(100);
+        //HealthSystem healthSystem = new HealthSystem(100);
 
-        
+        Debug.LogFormat("Setup Bar");
         Transform healthBarTransform = Instantiate(pfHealthBar, new Vector3(0, 10), Quaternion.identity);
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         //healthBar.Setup(healthSystem);
