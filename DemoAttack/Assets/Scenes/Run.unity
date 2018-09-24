@@ -13515,7 +13515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16000001, y: 0.2}
   m_AnchorMax: {x: 0.16000001, y: 0.2}
-  m_AnchoredPosition: {x: -83.360016, y: -47.600006}
+  m_AnchoredPosition: {x: -73.67999, y: 3}
   m_SizeDelta: {x: 84, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027707544
@@ -14738,7 +14738,6 @@ GameObject:
   - component: {fileID: 1717979956}
   - component: {fileID: 1717979955}
   - component: {fileID: 1717979951}
-  - component: {fileID: 1717979952}
   - component: {fileID: 1717979953}
   - component: {fileID: 1717979954}
   - component: {fileID: 1717979960}
@@ -14762,19 +14761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2009972929}
---- !u!114 &1717979952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1717979950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3a870aaa1728a4badc91c5f30ebd9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pfHealthBar: {fileID: 2009972929}
-  healthSystem: {fileID: 1717979951}
 --- !u!114 &1717979953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14983,7 +14969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430.5, y: -239}
+  m_AnchoredPosition: {x: -464, y: -157.5}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727757746
@@ -15839,7 +15825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440.5, y: -249}
+  m_AnchoredPosition: {x: 494, y: -187.5}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2058883539

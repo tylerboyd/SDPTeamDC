@@ -74,10 +74,16 @@ public class HealthSystem : MonoBehaviour{
         healthBar.Find("Bar").localScale = new Vector3((this.GetHealthPercentage() / 100), 1, 1);
 
         return;
-        /*if (HealthChanged != null)
+
+    }
+
+    public int Heal_Test(int healAmount, int health, int maxHealth)
+    {
+        health += healAmount;
+        if (health > maxHealth)
         {
-            Debug.LogFormat("Health Change");
-            HealthChanged(this, EventArgs.Empty);
-        }*/
+            health = maxHealth;
+        }
+        return health;
     }
 }

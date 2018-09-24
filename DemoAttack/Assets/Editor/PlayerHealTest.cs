@@ -3,38 +3,40 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-public class PlayerDamageTest {
+public class PlayerHealTest
+{
 
     [Test]
-    public void PlayerTakesDamage() {
-
+    public void PlayerCanHeal()
+    {
         //ARRANGE
         GameObject player = new GameObject();
-        int health = 5;
-        int enemyDamage = 1;
-        int expectedHealth = 4;
+        int health = 2;
+        int maxHealth = 7;
+        int playerHealing = 3;
+        int expectedHealth = 5;
         player.AddComponent<HealthSystem>();
 
         //ACT
-        var remainingHealth = player.GetComponent<HealthSystem>().Damage_Test(enemyDamage, health);
+        var remainingHealth = player.GetComponent<HealthSystem>().Heal_Test(playerHealing, health, maxHealth);
 
         //ASSERT
         Assert.That(remainingHealth, Is.EqualTo(expectedHealth));
     }
 
     [Test]
-    public void PlayerNotBelowZeroHealth()
+    public void PlayerNotHealAboveMax()
     {
-
         //ARRANGE
         GameObject player = new GameObject();
-        int health = 5;
-        int enemyDamage = 7;
-        int expectedHealth = 0;
+        int health = 4;
+        int maxHealth = 7;
+        int playerHealing = 6;
+        int expectedHealth = 7;
         player.AddComponent<HealthSystem>();
 
         //ACT
-        var remainingHealth = player.GetComponent<HealthSystem>().Damage_Test(enemyDamage, health);
+        var remainingHealth = player.GetComponent<HealthSystem>().Heal_Test(playerHealing, health, maxHealth);
 
         //ASSERT
         Assert.That(remainingHealth, Is.EqualTo(expectedHealth));
