@@ -4,14 +4,14 @@ using UnityEngine;
 
 //Tobias McGee: 1323946
 //Andrew Bycroft: 16948980
-//Larry Zhao: 15913026
 
 public class PlayerHealth : MonoBehaviour {
 
     public Rigidbody2D rb2D;
+    public HealthSystem healthSystem;
     Animator anim;
 
-    public int health;
+    public int maxHealth;
     public GameObject bloodSplash;
     public float attackTime;
     private float attackTimeCounter;
@@ -19,18 +19,20 @@ public class PlayerHealth : MonoBehaviour {
 
     public AudioClip heroTakingDamageSound1;
     public AudioClip heroTakingDamageSound2;
+    
 
     // Use this for initialization
     void Start () {
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        healthSystem.SetUp(maxHealth);
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
         //If health reaches 0, kill player and send to game over screen
-        if (health <= 0)
+        if (healthSystem.GetHealth() <= 0)
         {
             //TODO: switch scene to Game Over
             Destroy(gameObject);
@@ -54,7 +56,7 @@ public class PlayerHealth : MonoBehaviour {
             attackTimeCounter = attackTime;
             attacking = true;
             Instantiate(bloodSplash, transform.position, Quaternion.identity);
-            health -= damage;
+            healthSystem.Damage(damage);
 
             SoundManager.Instance.RandomPlayHeroTakingDamageSource(heroTakingDamageSound1, heroTakingDamageSound2);
 
