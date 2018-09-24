@@ -60,8 +60,6 @@ public class PlayerHealth : MonoBehaviour {
             healthSystem.Damage(damage);
 
             SoundManager.Instance.RandomPlayHeroTakingDamageSource(heroTakingDamageSound1, heroTakingDamageSound2);
-
-            //SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
             Debug.LogFormat("Damage dealt to " + gameObject.name);
         }
     }
