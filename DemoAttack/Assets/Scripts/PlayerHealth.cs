@@ -4,6 +4,7 @@ using UnityEngine;
 
 //Tobias McGee: 1323946
 //Andrew Bycroft: 16948980
+//Larry Zhao: 15913026
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -15,7 +16,9 @@ public class PlayerHealth : MonoBehaviour {
     public float attackTime;
     private float attackTimeCounter;
     private bool attacking;
-    
+
+    public AudioClip heroTakingDamageSound1;
+    public AudioClip heroTakingDamageSound2;
 
     // Use this for initialization
     void Start () {
@@ -52,6 +55,8 @@ public class PlayerHealth : MonoBehaviour {
             attacking = true;
             Instantiate(bloodSplash, transform.position, Quaternion.identity);
             health -= damage;
+
+            SoundManager.Instance.RandomPlayHeroTakingDamageSource(heroTakingDamageSound1, heroTakingDamageSound2);
 
             //SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDemageSound1, enemyTakingDemageSound2);
             Debug.LogFormat("Damage dealt to " + gameObject.name);

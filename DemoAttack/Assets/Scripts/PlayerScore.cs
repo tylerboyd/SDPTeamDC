@@ -41,7 +41,7 @@ public class PlayerScore : MonoBehaviour {
         SetGoldText();
     }
 
-    void OnGUI()
+    /*void OnGUI()for testing
     {
         if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
         {
@@ -50,7 +50,7 @@ public class PlayerScore : MonoBehaviour {
         if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
         {
             AddGold();
-        }
+        }*/
     }
 
    /* void OnCompletion()
@@ -65,5 +65,5 @@ public class PlayerScore : MonoBehaviour {
             }
             PlayerInfo.info.Save();
         }
-    }*/
-}
+    }
+}*/

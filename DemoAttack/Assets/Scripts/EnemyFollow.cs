@@ -217,7 +217,7 @@ public class EnemyFollow : MonoBehaviour {
             Instantiate(bloodSplash, transform.position, Quaternion.identity);
             health -= damage;
 
-            SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
+            SoundManager.Instance.RandomPlayEnemyTakingDamageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
             Debug.LogFormat("Damage dealt to " + gameObject.name);
         }
     }
