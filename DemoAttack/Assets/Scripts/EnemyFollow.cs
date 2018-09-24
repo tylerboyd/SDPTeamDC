@@ -17,13 +17,16 @@ public class EnemyFollow : MonoBehaviour {
     private Animator anim;
     private GameObject enemy;
     public GameObject bloodSplash;
-    public int health;
+    public int maxHealth;
     private GameObject player;
 
     //The delay between attacking time, so animation is not spammed.
     private bool attacking;
     public float attackTime;
     private float attackTimeCounter;
+
+    //Health
+    public HealthSystem healthSystem;
 
     //For calculating if the player is in range
     private CircleCollider2D range;
@@ -53,6 +56,7 @@ public class EnemyFollow : MonoBehaviour {
         playerInRange = false;
         range = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Hero");
+        healthSystem.SetUp(maxHealth);
     }
 
     // Update is called once per frame
@@ -86,7 +90,7 @@ public class EnemyFollow : MonoBehaviour {
         }
 
         //Kill the enemy if their health drops to 0 or below
-        if (health <= 0)
+        if (healthSystem.GetHealth() <= 0)
         {
             Destroy(gameObject);
             PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("AddScore");
@@ -215,7 +219,7 @@ public class EnemyFollow : MonoBehaviour {
         {
             takeDamageTimeCounter = takeDamageAttackTime;
             Instantiate(bloodSplash, transform.position, Quaternion.identity);
-            health -= damage;
+            healthSystem.Damage(damage);
 
             SoundManager.Instance.RandomPlayEnemyTakingDemageSource(enemyTakingDamageSound1, enemyTakingDamageSound2);
             Debug.LogFormat("Damage dealt to " + gameObject.name);

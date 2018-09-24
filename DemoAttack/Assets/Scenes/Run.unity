@@ -300,6 +300,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4142355191853756, guid: ba8b51bbb9546bc43a913fc6d14f6479, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba8b51bbb9546bc43a913fc6d14f6479, type: 2}
   m_IsPrefabAsset: 0
@@ -14149,6 +14153,7 @@ GameObject:
   - component: {fileID: 1717979952}
   - component: {fileID: 1717979953}
   - component: {fileID: 1717979954}
+  - component: {fileID: 1717979960}
   - component: {fileID: 1717979957}
   m_Layer: 12
   m_Name: Player
@@ -14168,6 +14173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02df57a93d0b74d4e8a69e22d78a75f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 2009972929}
 --- !u!114 &1717979952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14208,8 +14214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b3c71301a1c2f41ac295a922497499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 0}
-  health: 20
+  rb2D: {fileID: 1717979958}
+  healthSystem: {fileID: 1717979951}
+  maxHealth: 20
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
   attackTime: 1
@@ -14341,6 +14348,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1717979960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1717979950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771a02f175d1a1c49b73c39a8c60bcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727757744
 GameObject:
   m_ObjectHideFlags: 0
@@ -14455,8 +14473,9 @@ MonoBehaviour:
   playerMoving: 0
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
-  health: 4
+  maxHealth: 5
   attackTime: 1
+  healthSystem: {fileID: 2034273287}
   attackPos: {fileID: 179346684}
   attackRange: 1.5
   damage: 1
@@ -14614,14 +14633,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2034273279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b3c71301a1c2f41ac295a922497499, type: 3}
+  m_Script: {fileID: 11500000, guid: 02df57a93d0b74d4e8a69e22d78a75f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 2034273284}
-  health: 10
-  bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
-    type: 2}
-  attackTime: 0
+  healthBar: {fileID: 1624754591}
 --- !u!1 &2046922872
 GameObject:
   m_ObjectHideFlags: 0
