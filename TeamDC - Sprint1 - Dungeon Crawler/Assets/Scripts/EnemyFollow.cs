@@ -118,6 +118,12 @@ public class EnemyFollow : MonoBehaviour {
             }
         }
 
+        if (attackTimeCounter > 0)
+        {
+            attackTimeCounter -= Time.deltaTime;
+        }
+
+
         if (takeDamageTimeCounter > 0)
         {
             takeDamageTimeCounter -= Time.deltaTime;
