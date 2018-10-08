@@ -13139,7 +13139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1027707543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14425,6 +14425,7 @@ MonoBehaviour:
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
   attackTime: 1
+  flashingLength: 0.5
   heroTakingDamageSound1: {fileID: 8300000, guid: 889f0cc4c30f2479ba24f2caaaa6385b,
     type: 3}
   heroTakingDamageSound2: {fileID: 8300000, guid: ee3b8da14c54c4894bf1ca7392e20cd5,
@@ -14584,7 +14585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727757745
 RectTransform:
   m_ObjectHideFlags: 0
