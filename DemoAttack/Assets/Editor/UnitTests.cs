@@ -24,6 +24,23 @@ public class UnitTests
     }
 
     [Test]
+    public void PlayerGoldShouldIncrease()
+    {
+        //Arrange
+        var gameObject = new GameObject();
+        var initial_gold = 80;
+        var gold_increment = 20;
+        var expected_gold = 100;
+        gameObject.AddComponent<PlayerScore>();
+
+        //Act
+        var new_gold = gameObject.GetComponent<PlayerScore>().Gold_Test(initial_gold, gold_increment);
+
+        //Assert
+        Assert.AreEqual(expected_gold, new_gold);
+    }
+
+    [Test]
     public void PlayerTakesDamageTest()
     {
         //Arrange
@@ -39,4 +56,6 @@ public class UnitTests
         //Assert
         Assert.That(remainingHealth, Is.EqualTo(expectedHealth));
     }
+
+   
 }

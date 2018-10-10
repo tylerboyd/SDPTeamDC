@@ -14,6 +14,13 @@ public class PlayerScore : MonoBehaviour {
     public int score;
     public int gold;
 
+    public int Gold_Test(int gold, int gold_increment)
+    {
+        gold += gold_increment;
+
+        return gold;
+    }
+
     public int Score_Test(int score, int score_increment)
     {
         score += score_increment;
