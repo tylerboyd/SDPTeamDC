@@ -38,7 +38,7 @@ public class PlayerScore : MonoBehaviour {
 
     void SetGoldText()
     {
-        GoldText.text = "Gold: " + gold.ToString();
+        GoldText.text = ": " + gold.ToString();
     }
 
     void AddGold()
@@ -53,29 +53,15 @@ public class PlayerScore : MonoBehaviour {
         return gold;
     }
 
-    /*void OnGUI()for testing
+    void OnCompletion()
     {
-        if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
+        PlayerInfo.FindObjectOfType<PlayerInfo>().gold = PlayerInfo.FindObjectOfType<PlayerInfo>().gold + gold;
+        if (PlayerInfo.FindObjectOfType<PlayerInfo>().highscore < score)
         {
-            AddScore();
+            PlayerInfo.FindObjectOfType<PlayerInfo>().highscore = score;
+            PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
         }
-        if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
-        {
-            AddGold();
-        }*/
-}
-
-   /* void OnCompletion()
-    {
-        if//user is defeated
-        {
-            PlayerInfo.info.gold = PlayerInfo.info.gold + gold;
-            if (PlayerInfo.info.highscore < score)
-            {
-                PlayerInfo.info.highscore = score;
-                PlayerInfo.info.Save();
-            }
-            PlayerInfo.info.Save();
-        }
+        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
+        Debug.LogFormat(PlayerInfo.FindObjectOfType<PlayerInfo>().highscore + "total score");
     }
-}*/
+}
