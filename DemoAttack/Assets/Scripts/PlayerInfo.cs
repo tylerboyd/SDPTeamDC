@@ -1,4 +1,4 @@
-﻿//Tarran O'Shaughness hcv3389
+﻿//Tarran O'Shaughnessy hcv3389
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +9,11 @@ using System.IO;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public static PlayerInfo info;
+    public PlayerInfo info;
     public int highscore;
     public int gold;
+    public ArrayList inventory = new ArrayList();
+
 
     void Awake()
     {

@@ -20,16 +20,6 @@ public class HealthSystem : MonoBehaviour{
         health = maxHealth;
     }*/
 
-    public int Damage_Test(int damageAmount, int health)
-    {
-        health -= damageAmount;
-        if(health < 0)
-        {
-            health = 0;
-        }
-        return health;
-    }
-
     public void SetUp(int max)
     {
         maxHealth = max;

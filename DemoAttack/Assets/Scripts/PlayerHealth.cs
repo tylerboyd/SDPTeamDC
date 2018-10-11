@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             //TODO: switch scene to Game Over
             Destroy(gameObject);
-
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("OnCompletion");
             //SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat(gameObject.name + " was killed");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);

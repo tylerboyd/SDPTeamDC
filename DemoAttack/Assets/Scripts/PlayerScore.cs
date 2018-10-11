@@ -1,4 +1,4 @@
-﻿//Tarran O'Shaughness hcv3389
+﻿//Tarran O'Shaughnessy hcv3389
 
 using System.Collections;
 using System.Collections.Generic;
@@ -14,23 +14,7 @@ public class PlayerScore : MonoBehaviour {
     public int score;
     public int gold;
 
-    public int Gold_Test(int gold, int gold_increment)
-    {
-        gold += gold_increment;
-
-        return gold;
-    }
-
-    public int Score_Test(int score, int score_increment)
-    {
-        score += score_increment;
-
-        return score;
-    }
-
 	void Awake () {
-        gold = 0;
-        score = 0;
         SetScoreText();
         SetGoldText();
 	}
@@ -57,29 +41,15 @@ public class PlayerScore : MonoBehaviour {
         SetGoldText();
     }
 
-    /*void OnGUI()for testing
+    void OnCompletion()
     {
-        if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
+        PlayerInfo.FindObjectOfType<PlayerInfo>().gold = PlayerInfo.FindObjectOfType<PlayerInfo>().gold + gold;
+        if (PlayerInfo.FindObjectOfType<PlayerInfo>().highscore < score)
         {
-            AddScore();
+            PlayerInfo.FindObjectOfType<PlayerInfo>().highscore= score;
+            PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
         }
-        if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
-        {
-            AddGold();
-        }*/
+        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
+        Debug.LogFormat(PlayerInfo.FindObjectOfType<PlayerInfo>().highscore + "total score");
     }
-
-   /* void OnCompletion()
-    {
-        if//user is defeated
-        {
-            PlayerInfo.info.gold = PlayerInfo.info.gold + gold;
-            if (PlayerInfo.info.highscore < score)
-            {
-                PlayerInfo.info.highscore = score;
-                PlayerInfo.info.Save();
-            }
-            PlayerInfo.info.Save();
-        }
-    }
-}*/
+}
