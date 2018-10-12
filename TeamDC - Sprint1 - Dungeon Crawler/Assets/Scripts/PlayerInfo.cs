@@ -12,18 +12,73 @@ public class PlayerInfo : MonoBehaviour
     public PlayerInfo info;
     public int highscore;
     public int gold;
+    public int healthpotions;
+    public int speedpotions;
     public ArrayList inventory = new ArrayList();
 
     void Awake()
     {
-        if(info == null)
+        if (info == null)
         {
             DontDestroyOnLoad(gameObject);
             info = this;
         }
-        else if(info != this){
+        else if (info != this)
+        {
             Destroy(gameObject);
         }
+    }
+
+    void HealthPotionTotal()
+    {
+        healthpotions = healthpotions - healthpotions;
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Health")
+            {
+                healthpotions = healthpotions + 1;
+            }
+        }
+    }
+
+    void RemoveHealthPotion()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if(inventory[i] == "Health")
+            {
+                inventory.RemoveAt(i);
+                healthpotions = healthpotions - 1;
+                i = 3;
+            }
+        }
+        HealthPotionUpdater.FindObjectOfType<HealthPotionUpdater>().SendMessage("SetHealthPotionCount");
+    }
+
+    void SpeedPotionTotal()
+    {
+        speedpotions = speedpotions - speedpotions;
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Speed")
+            {
+                speedpotions = speedpotions + 1;
+            }
+        }
+    }
+
+    void RemoveSpeedPotion()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Speed")
+            {
+                inventory.RemoveAt(i);
+                speedpotions = speedpotions - 1;
+                i = 3;
+            }
+        }
+        SpeedPotionUpdater.FindObjectOfType<SpeedPotionUpdater>().SendMessage("SetSpeedPotionCount");
     }
 
     public void Save()//awaiting implementation
