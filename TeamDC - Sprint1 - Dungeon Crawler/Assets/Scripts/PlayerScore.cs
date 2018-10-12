@@ -1,4 +1,4 @@
-﻿//Tarran O'Shaughness hcv3389
+﻿//Tarran O'Shaughnessy hcv3389
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,20 +8,29 @@ using UnityEngine.UI;
 public class PlayerScore : MonoBehaviour {
 
     public GameObject playerscores;
-    
-    public Text ScoreText;
-    public Text GoldText;
+
+    public Text scoreText;
+    public Text goldText;
+    public Text deathScore;
+    public Text deathGold;
     public int score;
     public int gold;
 
-	void Awake () {
+    void Awake () {
         SetScoreText();
         SetGoldText();
-	}
-	
+        SetDeathGoldText();
+        SetDeathScoreText();
+    }
+
     void SetScoreText()
     {
-        ScoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
+    }
+
+    void SetDeathScoreText()
+    {
+        deathScore.text = "Score: " + score.ToString();
     }
 
     void AddScore()
@@ -38,7 +47,12 @@ public class PlayerScore : MonoBehaviour {
 
     void SetGoldText()
     {
-        GoldText.text = ": " + gold.ToString();
+        goldText.text = ": " + gold.ToString();
+    }
+
+    void SetDeathGoldText()
+    {
+        deathGold.text = ": " + gold.ToString();
     }
 
     void AddGold()
@@ -55,6 +69,8 @@ public class PlayerScore : MonoBehaviour {
 
     void OnCompletion()
     {
+        SetDeathScoreText();
+        SetDeathGoldText();
         PlayerInfo.FindObjectOfType<PlayerInfo>().gold = PlayerInfo.FindObjectOfType<PlayerInfo>().gold + gold;
         if (PlayerInfo.FindObjectOfType<PlayerInfo>().highscore < score)
         {
