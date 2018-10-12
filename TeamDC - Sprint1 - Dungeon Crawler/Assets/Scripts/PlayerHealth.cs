@@ -12,6 +12,11 @@ public class PlayerHealth : MonoBehaviour {
     public HealthSystem healthSystem;
     Animator anim;
 
+    public GameObject DeathScreen;
+    public GameObject ScoreText;
+    public GameObject GoldText;
+    public GameObject GoldCoin;
+
     public int maxHealth;
     public GameObject bloodSplash;
     public float attackTime;
@@ -43,10 +48,15 @@ public class PlayerHealth : MonoBehaviour {
         {
             //TODO: switch scene to Game Over
             Destroy(gameObject);
-
+            PlayerScore.FindObjectOfType<PlayerScore>().SendMessage("OnCompletion");
             //SoundManager.Instance.RandomPlayEnemyDeadSource(enemyDeadSound1, enemyDeadSound2);
             Debug.LogFormat(gameObject.name + " was killed");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);
+            ScoreText.SetActive(false);
+            GoldText.SetActive(false);
+            GoldCoin.SetActive(false);
+            PlayerScore.FindObjectOfType<PlayerScore>().deathGold = PlayerScore.FindObjectOfType<PlayerScore>().goldText;
+            //GameStateManager.FindObjectOfType<GameStateManager>().GamePause();
+            DeathScreen.SetActive(true);
         }
 
         if (attackTimeCounter > 0)

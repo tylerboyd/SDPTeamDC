@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 //Tyler Boyd: 16951977
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
     //Loads the Game Scene
     public void PlayGame()

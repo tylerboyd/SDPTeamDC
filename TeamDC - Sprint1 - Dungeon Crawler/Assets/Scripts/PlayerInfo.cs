@@ -9,9 +9,10 @@ using System.IO;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public static PlayerInfo info;
+    public PlayerInfo info;
     public int highscore;
     public int gold;
+    public ArrayList inventory = new ArrayList();
 
     void Awake()
     {
@@ -51,12 +52,6 @@ public class PlayerInfo : MonoBehaviour
             gold = data.gold;
         }
     }
-
-    /*void OnGUI()
-    {
-        GUI.Label(new Rect(10, 5, 200, 50), "Score: " + highscore);
-        GUI.Label(new Rect(1380, 5, 200, 50), "Gold: " + gold);
-    }*/
 }
 
 [System.Serializable]

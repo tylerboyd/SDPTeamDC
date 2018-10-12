@@ -9,25 +9,35 @@ public class PlayerScore : MonoBehaviour {
 
     public GameObject playerscores;
     
-    public Text ScoreText;
-    public Text GoldText;
+    public Text scoreText;
+    public Text goldText;
+    public Text deathScore;
+    public Text deathGold;
     public int score;
     public int gold;
 
 	void Awake () {
         SetScoreText();
         SetGoldText();
+        SetDeathGoldText();
+        SetDeathScoreText();
 	}
 	
     void SetScoreText()
     {
-        ScoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
+    }
+
+    void SetDeathScoreText()
+    {
+        deathScore.text = "Score: " + score.ToString();
     }
 
     void AddScore()
     {
         score = score + 200;
         SetScoreText();
+        SetDeathScoreText();
     }
 
     public int AddScore_Test(int score)
@@ -38,13 +48,19 @@ public class PlayerScore : MonoBehaviour {
 
     void SetGoldText()
     {
-        GoldText.text = ": " + gold.ToString();
+        goldText.text = ": " + gold.ToString();
+    }
+
+    void SetDeathGoldText()
+    {
+        deathGold.text = ": " + gold.ToString();
     }
 
     void AddGold()
     {
         gold = gold + 20;
         SetGoldText();
+        SetDeathGoldText();
     }
 
     public int AddGold_Test(int gold)
@@ -53,29 +69,15 @@ public class PlayerScore : MonoBehaviour {
         return gold;
     }
 
-    /*void OnGUI()for testing
+    void OnCompletion()
     {
-        if (GUI.Button(new Rect(10, 100, 100, 30), "Score up"))
+        PlayerInfo.FindObjectOfType<PlayerInfo>().gold = PlayerInfo.FindObjectOfType<PlayerInfo>().gold + gold;
+        if (PlayerInfo.FindObjectOfType<PlayerInfo>().highscore < score)
         {
-            AddScore();
+            PlayerInfo.FindObjectOfType<PlayerInfo>().highscore = score;
+            PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
         }
-        if (GUI.Button(new Rect(10, 140, 100, 30), "Gold up"))
-        {
-            AddGold();
-        }*/
-}
-
-   /* void OnCompletion()
-    {
-        if//user is defeated
-        {
-            PlayerInfo.info.gold = PlayerInfo.info.gold + gold;
-            if (PlayerInfo.info.highscore < score)
-            {
-                PlayerInfo.info.highscore = score;
-                PlayerInfo.info.Save();
-            }
-            PlayerInfo.info.Save();
-        }
+        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Save");
+        Debug.LogFormat(PlayerInfo.FindObjectOfType<PlayerInfo>().highscore + "total score");
     }
-}*/
+}

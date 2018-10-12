@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SceneManager.LoadScene("Run");
+        SceneManager.LoadScene("Runs");
     }
 }
 
