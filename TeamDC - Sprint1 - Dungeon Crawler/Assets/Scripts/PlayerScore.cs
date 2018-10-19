@@ -1,4 +1,4 @@
-﻿//Tarran O'Shaughness hcv3389
+﻿//Tarran O'Shaughnessy hcv3389
 
 using System.Collections;
 using System.Collections.Generic;
@@ -69,6 +69,8 @@ public class PlayerScore : MonoBehaviour {
 
     void OnCompletion()
     {
+        SetDeathScoreText();
+        SetDeathGoldText();
         PlayerInfo.FindObjectOfType<PlayerInfo>().gold = PlayerInfo.FindObjectOfType<PlayerInfo>().gold + gold;
         if (PlayerInfo.FindObjectOfType<PlayerInfo>().highscore < score)
         {

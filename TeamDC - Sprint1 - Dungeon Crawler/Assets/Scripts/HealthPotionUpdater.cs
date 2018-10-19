@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Tarran O'Shaughnessy hcv3389
+
 public class HealthPotionUpdater : MonoBehaviour {
 
     public Text health_potion_count;
