@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour {
             GoldText.SetActive(false);
             GoldCoin.SetActive(false);
             PlayerScore.FindObjectOfType<PlayerScore>().deathGold = PlayerScore.FindObjectOfType<PlayerScore>().goldText;
-            //GameStateManager.FindObjectOfType<GameStateManager>().GamePause();
+            GameStateManager.FindObjectOfType<GameStateManager>().GamePause();
             DeathScreen.SetActive(true);
         }
 
@@ -63,28 +63,27 @@ public class PlayerHealth : MonoBehaviour {
             attackTimeCounter -= Time.deltaTime;
         }
 
-        //Flash invincibility frames
+        //Flash invincibility frames.
         if(flashing)
         {   
-            //sprite should be invisible if the flash counter is above 0.66 seconds
+            //sprite should be invisible if the flash counter is above 0.66 seconds.
             //two-thirds of a second
             if(flashCounter > flashingLength * .66f)
             {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.5f);
+                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.3f);
             }
             //one-third of a second
             else if(flashCounter > flashingLength * 0.33f)
             {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
+                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.7f);
             }
             else if (flashCounter > 0)
             {
-                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.5f);
+                playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 0.3f);
             }
             else
             {
-                /*  Once player flashCounter reaches 0, turn off flashing and set opacity to full                 
-                 */
+                // Once player flashCounter reaches 0, turn off flashing and set opacity to full.             
                 playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, 1f);
                 flashing = false;
             }
