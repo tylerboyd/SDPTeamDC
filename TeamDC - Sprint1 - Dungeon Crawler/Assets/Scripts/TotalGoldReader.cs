@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Tarran O'Shaughnessy hcv3389
+
 public class TotalGoldReader : MonoBehaviour {
 
     public Text TotalGold;

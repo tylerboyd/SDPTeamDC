@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -16,6 +17,7 @@ public class GameStateManager : MonoBehaviour {
     private void Awake()
     {
         _instance = this;
+        ContinueGame();
     }
 
 
@@ -48,6 +50,15 @@ public class GameStateManager : MonoBehaviour {
         gameState = GameState.Running;
     }
 
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 
 }
