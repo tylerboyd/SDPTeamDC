@@ -89,6 +89,8 @@ public class PlayerInfo : MonoBehaviour
         PlayerData data = new PlayerData();
         data.highscore = highscore;
         data.gold = gold;
+        data.healthpotions = healthpotions;
+        data.speedpotions = speedpotions;
 
         bf.Serialize(fs, data);
         fs.Close();
@@ -105,6 +107,8 @@ public class PlayerInfo : MonoBehaviour
 
             highscore = data.highscore;
             gold = data.gold;
+            healthpotions = data.healthpotions;
+            speedpotions = data.speedpotions;
         }
     }
 }
@@ -114,4 +118,6 @@ class PlayerData
 {
     public int highscore;
     public int gold;
+    public int healthpotions;
+    public int speedpotions;
 }

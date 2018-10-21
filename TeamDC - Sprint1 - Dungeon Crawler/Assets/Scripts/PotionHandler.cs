@@ -11,6 +11,7 @@ public class PotionHandler : MonoBehaviour {
     float timer;
     public GameObject healthpotion;
     public GameObject speedpotion;
+    private readonly int hPotionHealAmount = 70;
 
 
     void Update()
@@ -35,11 +36,10 @@ public class PotionHandler : MonoBehaviour {
 
 	void HealthPotionUsed()
     {
-        HealthSystem.FindObjectOfType<HealthSystem>().Heal(70);
+        GameObject.FindGameObjectWithTag("Hero").GetComponent<HealthSystem>().Heal(hPotionHealAmount);
         PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("RemoveHealthPotion");
 
-
-        if(PlayerInfo.FindObjectOfType<PlayerInfo>().healthpotions == 0)
+        if (PlayerInfo.FindObjectOfType<PlayerInfo>().healthpotions == 0)
         {
             healthpotion.SetActive(false);
         }

@@ -8881,7 +8881,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: HealthPotionUsed
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &917306203
@@ -8979,7 +8979,7 @@ TilemapRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 002f679ada78d80448724777a4880ec2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14219,7 +14219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1027707543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16257,7 +16257,7 @@ MonoBehaviour:
   bloodSplash: {fileID: 1635437739063358, guid: 4907591cdf5134046b183155dc2a459f,
     type: 2}
   attackTime: 1
-  flashingLength: 0.5
+  flashingLength: 0.7
   heroTakingDamageSound1: {fileID: 8300000, guid: 889f0cc4c30f2479ba24f2caaaa6385b,
     type: 3}
   heroTakingDamageSound2: {fileID: 8300000, guid: ee3b8da14c54c4894bf1ca7392e20cd5,
@@ -16379,7 +16379,7 @@ SpriteRenderer:
   m_SortingLayerID: -1386758785
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 248632394caff1743b3480a97147f3b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f83a4b3e83f6d8f4dbdbf787df099add, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16417,7 +16417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727757745
 RectTransform:
   m_ObjectHideFlags: 0

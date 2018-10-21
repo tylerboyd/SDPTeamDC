@@ -9,14 +9,14 @@ public class SpeedPotionUpdater : MonoBehaviour {
 
     public Text speed_potion_count;
 
-    void Awake()
+    void Awake ()
     {
-        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("SpeedPotionTotal");
         SetSpeedPotionCount();
     }
 
     void SetSpeedPotionCount()
     {
+        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("SpeedPotionTotal");
         speed_potion_count.text = PlayerInfo.FindObjectOfType<PlayerInfo>().speedpotions + "x";
     }
 }

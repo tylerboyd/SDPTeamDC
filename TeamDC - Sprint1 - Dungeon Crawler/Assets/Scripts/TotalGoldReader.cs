@@ -35,6 +35,7 @@ public class TotalGoldReader : MonoBehaviour {
                 SetTotalGold();
                 PlayerInfo.FindObjectOfType<PlayerInfo>().gold = total_gold;
                 PlayerInfo.FindObjectOfType<PlayerInfo>().inventory.Add("Health");
+                HealthPotionUpdater.FindObjectOfType<HealthPotionUpdater>().SendMessage("SetHealthPotionCount");
             }
         }
     }
@@ -49,6 +50,7 @@ public class TotalGoldReader : MonoBehaviour {
                 SetTotalGold();
                 PlayerInfo.FindObjectOfType<PlayerInfo>().gold = total_gold;
                 PlayerInfo.FindObjectOfType<PlayerInfo>().inventory.Add("Speed");
+                SpeedPotionUpdater.FindObjectOfType<SpeedPotionUpdater>().SendMessage("SetSpeedPotionCount");
             }
         }
     }

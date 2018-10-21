@@ -11,12 +11,12 @@ public class HealthPotionUpdater : MonoBehaviour {
 
 	void Awake ()
     {
-        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("HealthPotionTotal");
         SetHealthPotionCount();
     }
 
     void SetHealthPotionCount()
     {
+        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("HealthPotionTotal");
         health_potion_count.text = PlayerInfo.FindObjectOfType<PlayerInfo>().healthpotions + "x";
     }
 }
