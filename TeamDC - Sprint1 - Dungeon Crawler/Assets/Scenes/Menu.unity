@@ -438,6 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415123704}
   - component: {fileID: 415123705}
+  - component: {fileID: 415123706}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -525,6 +526,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &415123706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 415123703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f42c384122e2fc4c9668bb3de42f908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 9ecfe0d5f1d45de478976941673540b6, type: 2}
+  slider: {fileID: 415123705}
 --- !u!1 &514027735
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 553014384}
   - component: {fileID: 553014385}
+  - component: {fileID: 553014386}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -655,6 +670,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &553014386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 553014383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618594b07ccdfbb41aa05a3ba2dd984c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 9ecfe0d5f1d45de478976941673540b6, type: 2}
+  slider: {fileID: 553014385}
 --- !u!1 &581669783
 GameObject:
   m_ObjectHideFlags: 0
