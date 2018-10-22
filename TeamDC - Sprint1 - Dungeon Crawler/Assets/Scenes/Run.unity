@@ -14219,7 +14219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1027707543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15532,6 +15532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471390062}
   - component: {fileID: 1471390063}
+  - component: {fileID: 1471390064}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -15619,6 +15620,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1471390064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471390061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618594b07ccdfbb41aa05a3ba2dd984c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 9ecfe0d5f1d45de478976941673540b6, type: 2}
+  slider: {fileID: 1471390063}
 --- !u!1 &1554933096
 GameObject:
   m_ObjectHideFlags: 0
@@ -16417,7 +16431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1727757745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16728,6 +16742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975000190}
   - component: {fileID: 1975000191}
+  - component: {fileID: 1975000192}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -16815,6 +16830,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1975000192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975000189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f42c384122e2fc4c9668bb3de42f908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 9ecfe0d5f1d45de478976941673540b6, type: 2}
+  slider: {fileID: 1975000191}
 --- !u!1 &1978194253
 GameObject:
   m_ObjectHideFlags: 0
