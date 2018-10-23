@@ -2,8 +2,13 @@
 
 2D Dungeon Crawler
 
+Team DC has brought to you their very first application, the "2D Dungeon Crawler". This game is built with Unity and Visual Studio. 
+It is a basic top-down style 2D game, in which the Player is meant to defeat enemies to accumulate gold and increase their score. 
+The gold is then used to purchase available consumables within the Store. High score and gold is only saved when the Player is defeated.
+
 #### Prerequisites ####
 An Android phone is required to run our app.
+Designed for 1920 x 1080 resolution.
 
 #### Installation ####
 1. Download the .apk file to your phone.
