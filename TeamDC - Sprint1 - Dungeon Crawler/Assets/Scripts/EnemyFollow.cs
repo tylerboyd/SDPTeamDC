@@ -25,9 +25,6 @@ public class EnemyFollow : MonoBehaviour {
     public float attackTime;
     private float attackTimeCounter;
 
-    //For calculating direction
-    private Vector3 prevPos;
-
     //Health
     public HealthSystem healthSystem;
 
@@ -60,15 +57,13 @@ public class EnemyFollow : MonoBehaviour {
         range = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Hero");
         healthSystem.SetUp(maxHealth);
-        prevPos = transform.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
         //if the player character is far enough away, start moving
-        if (Vector3.Distance(transform.position, target.position) > 3.0f)
+        if(Vector3.Distance(transform.position, target.position) > 3.0f)
         {
             isMoving = true;
             GetComponent<Rigidbody2D>().isKinematic = false;
@@ -91,18 +86,7 @@ public class EnemyFollow : MonoBehaviour {
                 rb.isKinematic = false;
                 //Moves the enemies position towards the target("Hero") against a fixed speed
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
-                //Calculate velocity and update direction
-                Vector2 velocity = transform.position - prevPos;
-                anim.SetBool("isWalking", true);
-                anim.SetFloat("MoveX", velocity.x);
-                anim.SetFloat("MoveY", velocity.y);
-                prevPos = transform.position;
             }
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
         }
 
         //Kill the enemy if their health drops to 0 or below
@@ -133,22 +117,6 @@ public class EnemyFollow : MonoBehaviour {
                 attackTimeCounter -= Time.deltaTime;
             }
         }
-
-        if(attacking == true)
-        {
-            anim.SetBool("isAttacking", true);
-        }
-        else
-        {
-            anim.SetBool("isAttacking", false);
-        }
-
-        if (attackTimeCounter > 0)
-        {
-            attackTimeCounter -= Time.deltaTime;
-            attacking = false;
-        }
-
 
         if (takeDamageTimeCounter > 0)
         {

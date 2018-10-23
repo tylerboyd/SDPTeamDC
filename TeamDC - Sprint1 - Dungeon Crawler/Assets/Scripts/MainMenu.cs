@@ -7,11 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-    void Awake()
-    {
-        PlayerInfo.FindObjectOfType<PlayerInfo>().SendMessage("Load");
-    }
-
     //Loads the Game Scene
     public void PlayGame()
     {

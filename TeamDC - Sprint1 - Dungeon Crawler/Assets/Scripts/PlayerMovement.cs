@@ -112,28 +112,17 @@ public class PlayerMovement : MonoBehaviour
     //Function for attack button
     public void TaskOnClick()
     {
-        if (attackTimeCounter <= 0)
-        {
-            if (!attacking)
-            {
-                attackTimeCounter = attackTime;
-                attacking = true;
-                rb2D.velocity = Vector2.zero;
-                anim.SetBool("isAttacking", true);
-                SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
-                //THE CHANGES TO WORKING CODE
+        attackTimeCounter = attackTime;
+        attacking = true;
+        rb2D.velocity = Vector2.zero;
+        anim.SetBool("isAttacking", true);
+        SoundManager.Instance.RandomPlayAttackSource(attackSound1, attackSound2);
+        //THE CHANGES TO WORKING CODE
 
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    enemiesToDamage[i].GetComponent<EnemyFollow>().TakeDamage(damage);
-                }
-            }
-        }
-        else if (attackTimeCounter > 0)
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+        for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            //timeBtwAttack from blackthornprod
-            attackTimeCounter -= Time.deltaTime;
+            enemiesToDamage[i].GetComponent<EnemyFollow>().TakeDamage(damage);
         }
     }
 }
