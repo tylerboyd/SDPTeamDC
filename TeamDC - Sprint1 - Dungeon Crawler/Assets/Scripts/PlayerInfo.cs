@@ -1,4 +1,4 @@
-﻿//Tarran O'Shaughness hcv3389
+﻿//Tarran O'Shaughnessy hcv3389
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,20 +9,76 @@ using System.IO;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public static PlayerInfo info;
+    public PlayerInfo info;
     public int highscore;
     public int gold;
+    public int healthpotions;
+    public int speedpotions;
+    public ArrayList inventory = new ArrayList();
 
     void Awake()
     {
-        if(info == null)
+        if (info == null)
         {
             DontDestroyOnLoad(gameObject);
             info = this;
         }
-        else if(info != this){
+        else if (info != this)
+        {
             Destroy(gameObject);
         }
+    }
+
+    void HealthPotionTotal()
+    {
+        healthpotions = healthpotions - healthpotions;
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Health")
+            {
+                healthpotions = healthpotions + 1;
+            }
+        }
+    }
+
+    void RemoveHealthPotion()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if(inventory[i] == "Health")
+            {
+                inventory.RemoveAt(i);
+                healthpotions = healthpotions - 1;
+                i = 3;
+            }
+        }
+        HealthPotionUpdater.FindObjectOfType<HealthPotionUpdater>().SendMessage("SetHealthPotionCount");
+    }
+
+    void SpeedPotionTotal()
+    {
+        speedpotions = speedpotions - speedpotions;
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Speed")
+            {
+                speedpotions = speedpotions + 1;
+            }
+        }
+    }
+
+    void RemoveSpeedPotion()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (inventory[i] == "Speed")
+            {
+                inventory.RemoveAt(i);
+                speedpotions = speedpotions - 1;
+                i = 3;
+            }
+        }
+        SpeedPotionUpdater.FindObjectOfType<SpeedPotionUpdater>().SendMessage("SetSpeedPotionCount");
     }
 
     public void Save()//awaiting implementation
@@ -33,6 +89,8 @@ public class PlayerInfo : MonoBehaviour
         PlayerData data = new PlayerData();
         data.highscore = highscore;
         data.gold = gold;
+        data.healthpotions = healthpotions;
+        data.speedpotions = speedpotions;
 
         bf.Serialize(fs, data);
         fs.Close();
@@ -49,14 +107,10 @@ public class PlayerInfo : MonoBehaviour
 
             highscore = data.highscore;
             gold = data.gold;
+            healthpotions = data.healthpotions;
+            speedpotions = data.speedpotions;
         }
     }
-
-    /*void OnGUI()
-    {
-        GUI.Label(new Rect(10, 5, 200, 50), "Score: " + highscore);
-        GUI.Label(new Rect(1380, 5, 200, 50), "Gold: " + gold);
-    }*/
 }
 
 [System.Serializable]
@@ -64,4 +118,6 @@ class PlayerData
 {
     public int highscore;
     public int gold;
+    public int healthpotions;
+    public int speedpotions;
 }
